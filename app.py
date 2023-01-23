@@ -23,13 +23,17 @@ def homepage():
 
 @app.route("/movies")
 def movie_recommendation():
+    movie = return_movie()
+    movie_name = movie['film_name']
+    movie_rating = movie['rating']
+    return render_template('movies.html', movie_name=movie_name, movie_rating=movie_rating)
+
+def return_movie():
     query = "SELECT * FROM movies LIMIT 1"
     result = conn.execute(query)
     df = pd.DataFrame(result.fetchall())
     df.columns = result.keys()
     movie = df.iloc[0].to_dict()
-    movie_name = movie['film_name']
-    movie_rating = movie['rating']
-    return render_template('movies.html', movie_name=movie_name, movie_rating=movie_rating)
+    return movie
 
 
