@@ -8,13 +8,14 @@ class ContentOfMovies(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.get('/movies', content_type='html/text')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(b'<h1>movies</h1>' in response.data)
+        self.assertTrue(b'<h1>Your movie:</h1>' in response.data)
 
     def test_return_movie(self):
         movie = return_movie()
         self.assertIn("id", movie)
         self.assertIn("title", movie)
         self.assertIn("rating", movie)
+        self.assertIn("year", movie)
 
 if __name__ == "__main__":
    unittest.main()
