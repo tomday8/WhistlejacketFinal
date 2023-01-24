@@ -16,10 +16,6 @@ conn = engine.connect()
 def homepage():
     return render_template('index.html')
 
-# @app.route("/movies")
-# def movie_recommendation():
-#     return render_template('movies.html')
-
 
 @app.route("/movies")
 def movie_recommendation():
@@ -35,5 +31,3 @@ def return_movie():
     df.columns = result.keys()
     movie = df.iloc[0].to_dict()
     return movie
-
-
