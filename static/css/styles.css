@@ -1,3 +1,20 @@
-h1 {
-    color: red;
+body{
+    background-color: rgb(213, 211, 209);
+
 }
+h1 {
+    
+    text-align: center;
+}
+
+.pick-mebtn {
+    height: 1px;
+   
+}
+
+main {
+    display: flex;
+   
+    justify-content: center;
+    height: 100vh;
+  }
