@@ -22,8 +22,9 @@ def homepage():
 def movie_recommendation():
     movie = return_movie()
     movie_title = movie['title']
+    movie_year = movie['year']
     movie_rating = movie['rating']
-    return render_template('movies.html', movie_title=movie_title, movie_rating=movie_rating)
+    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating)
 
 def return_movie():
     query = "SELECT * FROM movies"
