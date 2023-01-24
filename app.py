@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 import sqlalchemy as sal
 import pandas as pd
+import random
 
 
 app = Flask(__name__)
@@ -25,9 +26,9 @@ def movie_recommendation():
     return render_template('movies.html', movie_title=movie_title, movie_rating=movie_rating)
 
 def return_movie():
-    query = "SELECT * FROM movies LIMIT 1"
+    query = "SELECT * FROM movies"
     result = conn.execute(query)
     df = pd.DataFrame(result.fetchall())
     df.columns = result.keys()
-    movie = df.iloc[0].to_dict()
+    movie = random.choice(df.to_dict("records"))
     return movie
