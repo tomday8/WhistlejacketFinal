@@ -1,20 +1,32 @@
-body{
+html{
     background-color: rgb(213, 211, 209);
-
-}
-h1 {
-    
-    text-align: center;
+    font-family: sans-serif;
 }
 
-.pick-mebtn {
-    height: 1px;
-   
-}
-
-main {
+body{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
     display: flex;
-   
-    justify-content: center;
-    height: 100vh;
-  }
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+}
+
+h1{
+    padding: 1rem;
+}
+
+a {
+    border: solid 1px black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: inherit;
+    padding: 1rem;
+    width: 7rem;
+}
+
+.moviebuttons{
+    padding: 2rem;
+}
