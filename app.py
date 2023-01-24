@@ -20,9 +20,9 @@ def homepage():
 @app.route("/movies")
 def movie_recommendation():
     movie = return_movie()
-    movie_name = movie['film_name']
+    movie_title = movie['title']
     movie_rating = movie['rating']
-    return render_template('movies.html', movie_name=movie_name, movie_rating=movie_rating)
+    return render_template('movies.html', movie_title=movie_title, movie_rating=movie_rating)
 
 def return_movie():
     query = "SELECT * FROM movies LIMIT 1"
