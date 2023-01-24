@@ -89,10 +89,14 @@ def movie_recommendation():
     movie_title = movie['title']
     movie_year = movie['year']
     movie_rating = movie['rating']
-    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating)
+    movie_trailer=movie['trailer']
+    trailer_link = "https://www.youtube.com/embed/{}?&autoplay=1&start=6&mute=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
+    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, trailer_link=trailer_link)
 
 @app.route("/movies_demo")
 def movies_demo():
+    movie_trailer=movie['trailer']
+    return_movie_trailer()
     return render_template('movies_demo.html')
 
 
@@ -103,3 +107,11 @@ def return_movie():
     df.columns = result.keys()
     movie = random.choice(df.to_dict("records"))
     return movie
+
+def return_movie_trailer(id):
+    query = "SELECT trailer FROM movies WHERE id ={}".format(id)
+    result = conn.execute(query)
+    df = pd.DataFrame(result.fetchall())
+    df.columns = result.keys()
+    movie_trailer = df['trailer'].values[0]
+    return movie_trailer
