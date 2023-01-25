@@ -50,11 +50,16 @@ class User(UserMixin, db.Model):
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username =form.username.data, email = form.email.data)
-        user.set_password(form.password1.data)
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for('login'))
+        existing_user = User.query.filter_by(username=form.username.data).first()
+        if existing_user:
+            form.username.errors.append("Username already taken.")
+            return render_template('registration.html', form=form)
+        else:
+            user = User(username =form.username.data, email = form.email.data)
+            user.set_password(form.password1.data)
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('login'))
     return render_template('registration.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
