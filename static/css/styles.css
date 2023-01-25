@@ -48,6 +48,7 @@ input {
 }
 
 ul {
+ 
     position: fixed;
     top: 0;
     left: 0;
@@ -61,11 +62,19 @@ ul {
     
 }
 
+li {
+    display:flex;
+    flex-direction: row;
+}
   
-  li {
-    float: left;
-  }
-  
+#right-nav {
+    width: 100%;
+}
+
+#rightBtn {
+    float: right;
+}
+
   li a {
     display: block;
     color: white;
