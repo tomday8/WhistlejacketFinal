@@ -37,7 +37,7 @@ INSERT INTO movies ("title", "year", "rating", "trailer") VALUES
 ('Interstellar', 2014, 8.6, 'zSWdZVtXT7E'),
 ('The Green Mile', 1999, 8.6, 'Ki4haFrqSrw'),
 ('Star Wars', 1977, 8.5, 'vZ734NWnAHA'),
-('Terminator 2: Judgement Day', 1991, 8.5, 'CRRlbK5w8AE'),
+('Terminator 2: Judgment Day', 1991, 8.5, 'CRRlbK5w8AE'),
 ('Back to the Future', 1985, 8.5, 'qvsgGtivCgs');
 
 
