@@ -33,7 +33,7 @@ def load_user(user_id):
 
 class User(UserMixin, db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.String(50), index=True, unique=True)
+  firstname = db.Column(db.String(50), index=True, unique=True)
   email = db.Column(db.String(150), unique = True, index = True)
   password_hash = db.Column(db.String(150))
   joined_at = db.Column(db.DateTime(), default = datetime.utcnow, index = True)
@@ -50,12 +50,12 @@ class User(UserMixin, db.Model):
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        existing_user = User.query.filter_by(username=form.username.data).first()
+        existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user:
-            form.username.errors.append("Username already taken.")
+            form.email.errors.append("An account with this email already exists.")
             return render_template('registration.html', form=form)
         else:
-            user = User(username =form.username.data, email = form.email.data)
+            user = User(firstname =form.firstname.data, email = form.email.data)
             user.set_password(form.password1.data)
             db.session.add(user)
             db.session.commit()
