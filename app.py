@@ -72,6 +72,9 @@ def logout():
 def home():
     return render_template('index.html')
 
+@app.route("/account")
+def my_account():
+    return render_template('account.html')
 
 @app.route("/movies")
 def movie_recommendation():
