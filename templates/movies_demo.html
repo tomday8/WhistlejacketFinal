@@ -15,11 +15,23 @@ body {
   position: fixed;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  /* color: #f1f1f1; */
   color: rgb(213, 211, 209);
   width: 100%;
   padding: 20px;
 }
+
+.moviebuttons {
+  color: rgb(213, 211, 209);
+  right: 0px;
+  /* border: solid 1px black;
+  border-radius: 5px; */
+  text-decoration: none;
+  padding: 0.5rem;
+  width: 4rem;
+  background-color: rgb(91, 90, 89);
+  border-radius: 5px;
+}
+
 
 .video-container{
   width: 100vw;
@@ -54,13 +66,19 @@ iframe {
 <body>
 
     <div class="movie_demo_test">
-        <iframe src={{trailer_link}}></iframe> 
+        <iframe src={{background_link}}></iframe> 
        </div>
 
        <div class="content">
         <h1>{{movie_title}}</h1>
         <p>Year: {{movie_year}}</p>
         <p>IMDB Rating: {{movie_rating}}</p>
+        <!-- </div>
+        <div class="moviebuttons"> -->
+          <a class="moviebuttons" href="/movies_demo">Try again</a>
+          <a class="moviebuttons" href={{trailer_link}}>Trailer</a>
+          <a class="moviebuttons" href="/">Home</a>
+      </div>  
        
 
 
