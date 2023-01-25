@@ -10,11 +10,11 @@
 <body>
 <h1>Create an Account</h1>
 <br>
-<form action="" method="post">
+<form action="" method="post" type="password" pattern="(?=.*\d)[a-zA-Z\d]{6,}" required>
    {{ form.hidden_tag() }}
    <div>
-      {{ form.username(placeholder="username") }} 
-      {% for error in form.username.errors %}
+      {{ form.firstname(placeholder="first name") }} 
+      {% for error in form.firstname.errors %}
       <p>{{ error }}</p>
       {% endfor %}
    </div>
