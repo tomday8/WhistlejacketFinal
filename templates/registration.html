@@ -5,9 +5,12 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="static/css/styles.css">
+   {% extends 'base.html' %}
    <title>register</title>
 </head>
+{% block main %}
 <body>
+   <main>
 <h1>Create an Account</h1>
 <br>
 <form action="" method="post">
@@ -42,7 +45,10 @@
    <br>
    <div>{{ form.submit() }}
    </div>
+
 </form>
-<p></p>
+</main>
 <p><a id="newAccount" href="{{ url_for('login') }}">Already have an account?</a></p>
 </body>
+{% endblock %}
+</html>

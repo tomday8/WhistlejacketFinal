@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/styles.css">
+    {% extends 'base.html' %}
     <title>The randomizer</title>
 </head>
-
+{% block main %}
 <body>
-    <div>
+    <main>
         {% if current_user.is_anonymous %}
-        <a href="{{ url_for('login') }}">Login</a>
+        <h1>Welcome to The Movie Randomizer</h1>
         {% else %}
-        <p>Welcome {{current_user.firstname}}</p>
-        <a href="{{ url_for('logout') }}">Logout</a>
+        <h1>Welcome {{current_user.firstname.capitalize()}} to The Movie Randomizer</h1>
         {% endif %}  
-    </div>
-    <h1>Welcome to the movie randomizer</h1>
     <a href="/movies">Click me!</a>
+</main>
 </body>
+{% endblock %}
 </html>
