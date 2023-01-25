@@ -20,7 +20,7 @@ conn = engine.connect()
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://127.0.0.1:5432/whistlejacket-randomizer"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY') or os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 login_manager = LoginManager()
