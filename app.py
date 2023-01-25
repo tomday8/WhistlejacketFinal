@@ -77,17 +77,7 @@ def my_account():
     return render_template('account.html')
 
 @app.route("/movies")
-def movie_recommendation():
-    movie = return_movie()
-    movie_title = movie['title']
-    movie_year = movie['year']
-    movie_rating = movie['rating']
-    movie_trailer=movie['trailer']
-    trailer_link = "https://www.youtube.com/embed/{}?&autoplay=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
-    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, trailer_link=trailer_link)
-
-@app.route("/movies_demo")
-def movies_demo():
+def movies():
     movie = return_movie()
     movie_title = movie['title']
     movie_year = movie['year']
@@ -95,10 +85,8 @@ def movies_demo():
     movie_trailer=movie['trailer']
     background_link = "https://www.youtube.com/embed/{}?&autoplay=1&start=7&mute=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
     trailer_link = "https://www.youtube.com/embed/{}?&autoplay=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
-    return render_template('movies_demo.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, background_link=background_link, trailer_link=trailer_link)
+    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, background_link=background_link, trailer_link=trailer_link)
    
-
-
 def return_movie():
     query = "SELECT * FROM movies"
     result = conn.execute(query)
