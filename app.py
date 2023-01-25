@@ -10,7 +10,6 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm
 
-
 app = Flask(__name__)
 
 engine = sal.create_engine('postgresql://127.0.0.1:5432/whistlejacket-randomizer')
@@ -21,7 +20,7 @@ conn = engine.connect()
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://127.0.0.1:5432/whistlejacket-randomizer"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-SECRET_KEY = os.urandom(32)
+SECRET_KEY = os.environ.get('SECRET_KEY')
 app.config['SECRET_KEY'] = SECRET_KEY
 
 login_manager = LoginManager()
@@ -31,20 +30,7 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(user_id)
 
-class User(UserMixin, db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  firstname = db.Column(db.String(50), index=True, unique=True)
-  email = db.Column(db.String(150), unique = True, index = True)
-  password_hash = db.Column(db.String(150))
-  joined_at = db.Column(db.DateTime(), default = datetime.utcnow, index = True)
-
-  def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-  def check_password(self,password):
-      return check_password_hash(self.password_hash,password)
-
-
+from models import User
 
 @app.route('/register', methods = ['POST','GET'])
 def register():
@@ -76,7 +62,6 @@ def login():
     return render_template('login.html', form=form)
 
 @app.route("/logout")
-# @login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
