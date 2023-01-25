@@ -30,3 +30,19 @@ a {
 .moviebuttons{
     padding: 2rem;
 }
+
+input {
+    
+    border-radius: 5px;
+}
+
+#newAccount {
+    border: none;
+    text-decoration: underline;
+}
+
+#rememberMe {
+    display: flex;
+    justify-content: center;
+ 
+}
