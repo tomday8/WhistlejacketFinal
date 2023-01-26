@@ -7,8 +7,8 @@ CREATE TABLE user_movies (
     like_dislike INT DEFAULT 0,
     save_flag INT DEFAULT 0,
     CONSTRAINT unique_user_movie UNIQUE (user_id, movie_id),
-    FOREIGN KEY (user_id) REFERENCES "user"(id),
-    FOREIGN KEY (movie_id) REFERENCES movies(id)
+    FOREIGN KEY (user_id) REFERENCES "user"(id) ON DELETE CASCADE,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
 );
 
 -- To seed db: psql -h 127.0.0.1 whistlejacket-randomizer < seeds/user_movies_seeds.sql;

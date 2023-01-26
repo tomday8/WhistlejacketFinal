@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request, url_for, redirect
+from flask import Flask, render_template, flash, request, url_for, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 import sqlalchemy as sal
@@ -145,5 +145,39 @@ def save():
     user_id = request.form["user_id"]
     movie_id = request.form["movie_id"]
     query="INSERT INTO user_movies (user_id, movie_id, save_flag) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET save_flag = 1;".format(user_id, movie_id)
+    conn.execute(query)
+    return render_template('account.html')
+
+@app.route('/deleteAccount', methods=['POST'])
+def deleteAccount():
+    user_id = request.form["user_id"]
+    query='DELETE FROM "user" WHERE id={}'.format(user_id)
+    conn.execute(query)
+    session.clear()
+    return render_template('index.html')
+
+@app.route('/updateName', methods=['POST'])
+def updateName():
+    user_id = request.form["user_id"]
+    firstname = request.form["firstname"]
+    query="""UPDATE "user" SET firstname = '{}' WHERE id ={}""".format(firstname,user_id)
+    conn.execute(query)
+    return render_template('account.html')
+
+@app.route('/updateEmail', methods=['POST'])
+def updateEmail():
+    user_id = request.form["user_id"]
+    email = request.form["email"]
+    query="""UPDATE "user" SET email = '{}' WHERE id ={}""".format(email,user_id)
+    conn.execute(query)
+    return render_template('account.html')
+
+@app.route('/updatePassword', methods=['POST'])
+def updatePassword():
+    user = current_user
+    user_id = request.form["user_id"]
+    password = request.form["password"]
+    password_hash = generate_password_hash(password)
+    query="""UPDATE "user" SET password_hash = '{}' WHERE id ={}""".format(password_hash,user_id)
     conn.execute(query)
     return render_template('account.html')

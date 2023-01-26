@@ -11,8 +11,32 @@
 {% block main %}
 
 <body>
-<main>
+   
+    <main>
     <h1>Account</h1>
+      <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post">
+        <input type="text" name="firstname" placeholder="{{current_user.firstname}}">
+        <input type="hidden" name="user_id" value="{{current_user.id}}">
+        <input type="submit" value="Update name">
+      </form>
+
+      <form id="updateAccountForm" action="{{url_for('updateEmail')}}", method="post">
+        <input type="text" name="email" placeholder="{{current_user.email}}">
+        <input type="hidden" name="user_id" value="{{current_user.id}}">
+        <input type="submit" value="Update email">
+      </form>
+
+      <form id="updateAccountForm" action="{{url_for('updatePassword')}}", method="post">
+        <input type="password" name="password">
+        <input type="hidden" name="user_id" value="{{current_user.id}}">
+        <input type="submit" value="Update password">
+      </form>
+      
+      <form id="updateAccountForm" action="{{url_for('deleteAccount')}}", method="post">
+        <input type="hidden" name="user_id" value="{{current_user.id}}">
+        <input type="submit" value="Delete account">
+      </form>
+
 </main>
 </body>
 {% endblock %}
