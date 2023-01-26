@@ -1,8 +1,8 @@
 import unittest
-
 from app import app
-
 import psycopg2
+
+# Run tests: python3 -m unittest discover -s tests/
 
 def reset_movies_table():
     with open('../seeds/movies_seeds.sql', 'r') as seed_file:
