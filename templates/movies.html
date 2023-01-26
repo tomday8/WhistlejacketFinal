@@ -12,7 +12,7 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .content {
@@ -22,6 +22,8 @@ body {
   color: rgb(213, 211, 209);
   width: 100%;
   padding: 20px;
+  display: flex;
+  align-items:baseline;
 }
 
 .header {
@@ -33,22 +35,44 @@ body {
   padding: 20px;
 }
 
-.moviebuttons {
+/* .moviebuttons {
   color: rgb(213, 211, 209);
   right: 0px;
-  /* border: solid 1px black;
-  border-radius: 5px; */
   text-decoration: none;
   padding: 0.5rem;
   width: 4rem;
   background-color: rgb(91, 90, 89);
-  border-radius: 5px;
-}
+} */
 
+.moviebuttons {
+  color: rgb(213, 211, 209);
+  text-decoration: none;
+  padding: 0.5rem;
+  background-color: rgb(91, 90, 89);
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  width: auto;
+}
 
 .video-container{
   width: 100vw;
   height: 100vh;
+}
+
+.heading {
+  padding: 0;
+}
+
+.allbuttons {
+  display: flex;
+  justify-content: right;
+  width: 90%;
+  position: absolute;
+  bottom: 45px;
 }
     
 iframe {
@@ -85,43 +109,53 @@ iframe {
        </div>
 
        <div class="content">
-        <h1>{{movie_title}}</h1>
+        <div>
+        <h1 class="heading">{{movie_title}}</h1>
         <p>Year: {{movie_year}}</p>
         <p>IMDB Rating: {{movie_rating}}</p>
-
+        </div>
+      </div>
+        <div class="allbuttons">
           <a class="moviebuttons" href="/movies">Try again</a>
           <a class="moviebuttons" href={{trailer_link}}>Trailer</a>
           
+         
           <form action="{{url_for('save')}}", method="post">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
             <input type="hidden" name="movie_id" value="{{movie_id}}">
-            <input type="submit" value="Save">
+            <input type="submit" value="Save" class="moviebuttons">
           </form>
 
-          <form action="{{url_for('remove')}}", method="post">
+          <!-- <form action="{{url_for('remove')}}", method="post">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
             <input type="hidden" name="movie_id" value="{{movie_id}}">
             <input type="submit" value="Remove">
-          </form>
-
-          <form action="{{url_for('like')}}", method="post">
+          </form> -->
+          
+          <!-- <form action="{{url_for('like')}}", method="post">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
             <input type="hidden" name="movie_id" value="{{movie_id}}">
             <input type="submit" value="Like">
-          </form>
+          </form> -->
+
+          <form action="{{url_for('like')}}" method="post">
+            <input type="hidden" name="user_id" value="{{current_user.id}}">
+            <input type="hidden" name="movie_id" value="{{movie_id}}">
+            <input  type="submit" value="Like" class="moviebuttons">
+        </form>
 
           <form action="{{url_for('dislike')}}", method="post">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
             <input type="hidden" name="movie_id" value="{{movie_id}}">
-            <input type="submit" value="Disike">
+            <input class="moviebuttons" type="submit" value="Dislike">
           </form>
-
-          <form action="{{url_for('neutral')}}", method="post">
+        </div>
+          <!-- <form action="{{url_for('neutral')}}", method="post">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
             <input type="hidden" name="movie_id" value="{{movie_id}}">
             <input type="submit" value="Neutral">
-          </form>
-      </div>
+          </form> -->
+      
 
       <div class="header">
         <ul>
