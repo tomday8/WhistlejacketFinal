@@ -79,13 +79,14 @@ def my_account():
 @app.route("/movies")
 def movies():
     movie = return_movie()
+    movie_id = movie['id']
     movie_title = movie['title']
     movie_year = movie['year']
     movie_rating = movie['rating']
     movie_trailer=movie['trailer']
     background_link = "https://www.youtube.com/embed/{}?&autoplay=1&start=7&mute=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
     trailer_link = "https://www.youtube.com/embed/{}?&autoplay=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
-    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, background_link=background_link, trailer_link=trailer_link)
+    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, background_link=background_link, trailer_link=trailer_link, movie_id=movie_id)
    
 def return_movie():
     query = "SELECT * FROM movies"
@@ -102,3 +103,47 @@ def return_movie_trailer(id):
     df.columns = result.keys()
     movie_trailer = df['trailer'].values[0]
     return movie_trailer
+
+@app.route('/like', methods=['POST'])
+def like():
+    user_id = request.form["user_id"]
+    movie_id = request.form["movie_id"]
+    query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 1;".format(user_id, movie_id)
+    conn.execute(query)
+    return render_template('account.html')
+
+
+@app.route('/dislike', methods=['POST'])
+def dislike():
+    user_id = request.form["user_id"]
+    movie_id = request.form["movie_id"]
+    query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, -1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = -1;".format(user_id, movie_id)
+    conn.execute(query)
+    return render_template('account.html')
+
+
+@app.route('/neutral', methods=['POST'])
+def neutral():
+    user_id = request.form["user_id"]
+    movie_id = request.form["movie_id"]
+    query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 0) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 0;".format(user_id, movie_id)
+    conn.execute(query)
+    return render_template('account.html')
+
+
+@app.route('/remove', methods=['POST'])
+def remove():
+    user_id = request.form["user_id"]
+    movie_id = request.form["movie_id"]
+    query="UPDATE user_movies SET save_flag = 0 WHERE user_id= {} AND movie_id = {}".format(user_id, movie_id)
+    conn.execute(query)
+    return render_template('account.html')
+
+
+@app.route('/save', methods=['POST'])
+def save():
+    user_id = request.form["user_id"]
+    movie_id = request.form["movie_id"]
+    query="INSERT INTO user_movies (user_id, movie_id, save_flag) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET save_flag = 1;".format(user_id, movie_id)
+    conn.execute(query)
+    return render_template('account.html')

@@ -15,7 +15,7 @@
         </div>
         {% else %}
         <div id="right-nav">
-            <a id="rightBtn" href="{{ url_for('logout') }}">Logout</a>
+            <a id="rightBtn" href="{{ url_for('logout') }}">Logout {{current_user.id}}</a>
             <a id="rightBtn" href="{{ url_for('my_account') }}">My account</a>
         </div>
         {% endif %}  

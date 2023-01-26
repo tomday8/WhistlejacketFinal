@@ -88,11 +88,40 @@ iframe {
         <h1>{{movie_title}}</h1>
         <p>Year: {{movie_year}}</p>
         <p>IMDB Rating: {{movie_rating}}</p>
-        <!-- </div>
-        <div class="moviebuttons"> -->
+
           <a class="moviebuttons" href="/movies">Try again</a>
           <a class="moviebuttons" href={{trailer_link}}>Trailer</a>
-      </div>  
+          
+          <form action="{{url_for('save')}}", method="post">
+            <input type="hidden" name="user_id" value="{{current_user.id}}">
+            <input type="hidden" name="movie_id" value="{{movie_id}}">
+            <input type="submit" value="Save">
+          </form>
+
+          <form action="{{url_for('remove')}}", method="post">
+            <input type="hidden" name="user_id" value="{{current_user.id}}">
+            <input type="hidden" name="movie_id" value="{{movie_id}}">
+            <input type="submit" value="Remove">
+          </form>
+
+          <form action="{{url_for('like')}}", method="post">
+            <input type="hidden" name="user_id" value="{{current_user.id}}">
+            <input type="hidden" name="movie_id" value="{{movie_id}}">
+            <input type="submit" value="Like">
+          </form>
+
+          <form action="{{url_for('dislike')}}", method="post">
+            <input type="hidden" name="user_id" value="{{current_user.id}}">
+            <input type="hidden" name="movie_id" value="{{movie_id}}">
+            <input type="submit" value="Disike">
+          </form>
+
+          <form action="{{url_for('neutral')}}", method="post">
+            <input type="hidden" name="user_id" value="{{current_user.id}}">
+            <input type="hidden" name="movie_id" value="{{movie_id}}">
+            <input type="submit" value="Neutral">
+          </form>
+      </div>
 
       <div class="header">
         <ul>
