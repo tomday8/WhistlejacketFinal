@@ -48,18 +48,15 @@ body {
   color: rgb(213, 211, 209);
   text-decoration: none;
   padding: 0.5rem;
-  /* width: 4rem; */
-  height: 10px;
   background-color: rgb(91, 90, 89);
   display: inline-block;
-  border-radius: 4px;
-  /* text-align: center; */
+  border: 2px solid black;
+  border-radius: 5px;
+  text-align: center;
   font-size: 1rem;
+  cursor: pointer;
+  width: auto;
 }
- 
-/* input[type=submit] {
-  height: 2.5rem;
-} */
 
 .video-container{
   width: 100vw;
@@ -72,8 +69,10 @@ body {
 
 .allbuttons {
   display: flex;
-  width: 100%;
-  height: 100%;
+  justify-content: right;
+  width: 90%;
+  position: absolute;
+  bottom: 45px;
 }
     
 iframe {
@@ -115,12 +114,13 @@ iframe {
         <p>Year: {{movie_year}}</p>
         <p>IMDB Rating: {{movie_rating}}</p>
         </div>
+      </div>
         <div class="allbuttons">
           <a class="moviebuttons" href="/movies">Try again</a>
           <a class="moviebuttons" href={{trailer_link}}>Trailer</a>
           
          
-          <form action="{{url_for('save')}}", method="post" class="moviebuttons">
+          <form action="{{url_for('save')}}", method="post">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
             <input type="hidden" name="movie_id" value="{{movie_id}}">
             <input type="submit" value="Save" class="moviebuttons">
@@ -155,7 +155,7 @@ iframe {
             <input type="hidden" name="movie_id" value="{{movie_id}}">
             <input type="submit" value="Neutral">
           </form> -->
-      </div>
+      
 
       <div class="header">
         <ul>
