@@ -43,6 +43,7 @@
           <a class="moviebuttons" href="#" onclick="document.getElementById('trailer-form').submit()"><i class="fa-solid fa-video fa-2x"></i></a>
         </form>
         
+        {% if current_user.is_authenticated %}
         <form id="like-form" action="{{url_for('like')}}", method="post">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="hidden" name="movie_id" value="{{movie_id}}">
@@ -63,7 +64,8 @@
           <input type="submit" style="display: none;"">
           <a class="moviebuttons" href="#" onclick="document.getElementById('save-form').submit()"><i class="fa-solid fa-plus fa-2x"></i></a>
         </form>
-          
+        {% endif %} 
+        
         <!-- <form id="remove-form" action="{{url_for('remove')}}", method="post">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="hidden" name="movie_id" value="{{movie_id}}">
