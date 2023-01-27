@@ -113,7 +113,7 @@ def like():
     movie_id = request.form["movie_id"]
     query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 1;".format(user_id, movie_id)
     conn.execute(query)
-    return render_template('account.html')
+    return '', 204
 
 
 @app.route('/dislike', methods=['POST'])
@@ -122,7 +122,7 @@ def dislike():
     movie_id = request.form["movie_id"]
     query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, -1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = -1;".format(user_id, movie_id)
     conn.execute(query)
-    return render_template('account.html')
+    return '', 204
 
 
 @app.route('/neutral', methods=['POST'])
@@ -131,7 +131,7 @@ def neutral():
     movie_id = request.form["movie_id"]
     query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 0) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 0;".format(user_id, movie_id)
     conn.execute(query)
-    return render_template('account.html')
+    return '', 204
 
 
 @app.route('/remove', methods=['POST'])
@@ -140,7 +140,7 @@ def remove():
     movie_id = request.form["movie_id"]
     query="UPDATE user_movies SET save_flag = 0 WHERE user_id= {} AND movie_id = {}".format(user_id, movie_id)
     conn.execute(query)
-    return render_template('account.html')
+    return '', 204
 
 
 @app.route('/save', methods=['POST'])
@@ -149,7 +149,7 @@ def save():
     movie_id = request.form["movie_id"]
     query="INSERT INTO user_movies (user_id, movie_id, save_flag) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET save_flag = 1;".format(user_id, movie_id)
     conn.execute(query)
-    return render_template('account.html')
+    return '', 204
 
 @app.route('/deleteAccount', methods=['POST'])
 def deleteAccount():
