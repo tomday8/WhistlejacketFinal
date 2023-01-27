@@ -5,30 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/styles.css">
-    <link rel="stylesheet" href="static/css/movie_styles.css">
+    <script src="https://kit.fontawesome.com/ddd4f252e7.js" crossorigin="anonymous"></script>
 </head>
+
+<ul id="movieul">
+    <li>
+        <a class="icon-left" href="#" onclick="history.back()"><i class="fa-solid fa-chevron-left fa-2x"></i></a>
+  
+        <a href="/"><i class="fa-solid fa-house-chimney fa-2x"></i></a>
+  
+        {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}"><i class="fa-solid fa-right-to-bracket fa-2x"></i></a>
+        {% else %}
+            <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket fa-2x"></i></a>
+            <a href="{{ url_for('my_account') }}"><i class="fa-solid fa-user fa-2x"></i></a>
+        {% endif %}  
+    </li>
+</ul>
 
 <body>
     <div>
         <iframe src={{trailer_link}}></iframe> 
     </div>
 
-    <div class="header">
-        <ul>
-          <li>
-            <a href="/">Home</a>
-            {% if current_user.is_anonymous %}
-            <div id="right-nav">
-                <a id="rightBtn" href="{{ url_for('login') }}">Login</a>
-            </div>
-            {% else %}
-            <div id="right-nav">
-                <a id="rightBtn" href="{{ url_for('logout') }}">Logout</a>
-                <a id="rightBtn" href="{{ url_for('my_account') }}">My account</a>
-            </div>
-            {% endif %}  
-          </li>
-      </ul>
-    </div>
 </body>
 </html>
