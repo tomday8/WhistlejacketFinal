@@ -50,7 +50,6 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
@@ -65,8 +64,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-########
-
 
 @app.route("/")
 def home():
@@ -86,7 +83,7 @@ def movies():
     movie_trailer = movie['trailer']
     background_link = "https://www.youtube.com/embed/{}?controls=0&autoplay=1&start=7&mute=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
     trailer_link = "https://www.youtube.com/embed/{}?autoplay=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
-    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, background_link=background_link, trailer_link=trailer_link, movie_id=movie_id)
+    return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, movie_trailer=movie_trailer, background_link=background_link, trailer_link=trailer_link, movie_id=movie_id)
 
 def return_movie():
     query = "SELECT * FROM movies"
@@ -104,10 +101,11 @@ def return_movie_trailer(id):
     movie_trailer = df['trailer'].values[0]
     return movie_trailer
 
-@app.route("/trailer")
+@app.route("/trailer", methods=['POST'])
 def trailer():
-    trailer_link = request.args.get('trailer_link')
-    return render_template('trailer.html', trailer_link=trailer_link)
+    trailer_id = request.form['trailer_id']
+    trailer_link = "https://www.youtube.com/embed/{}?controls=0&autoplay=1&playinline=1&playlist={}&loop=1".format(trailer_id, trailer_id)
+    return render_template('trailer.html', trailer_id=trailer_id, trailer_link=trailer_link)
 
 @app.route('/like', methods=['POST'])
 def like():

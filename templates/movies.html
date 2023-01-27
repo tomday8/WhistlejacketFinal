@@ -10,27 +10,32 @@
 
 <body>
 
+  <div>
+    <iframe src={{background_link}}></iframe> 
+  </div>
+
+  <div class="content">
     <div>
-        <iframe src={{background_link}}></iframe> 
-       </div>
-
-       <div class="content">
-        <div>
-        <h1 class="heading">{{movie_title}}</h1>
-        <p>Year: {{movie_year}}</p>
-        <p>IMDB Rating: {{movie_rating}}</p>
-        </div>
-      </div>
-        <div class="allbuttons">
-          <a class="moviebuttons" href="/movies">Try again</a>
-          <a class="moviebuttons" href="/trailer?trailer_link={{trailer_link}}">Trailer</a>
-
+      <h1 class="heading">{{movie_title}}</h1>
+      <p>Year: {{movie_year}}</p>
+      <p>IMDB Rating: {{movie_rating}}</p>
+    </div>
+  </div>
+        
+  <div class="allbuttons">       
+    <a class="moviebuttons" href="/movies">Try again</a>
+    <!-- <a class="moviebuttons" href="/trailer?movie_trailer={{movie_trailer}}">Trailer</a> -->
           
-          <form action="{{url_for('save')}}", method="post">
-            <input type="hidden" name="user_id" value="{{current_user.id}}">
-            <input type="hidden" name="movie_id" value="{{movie_id}}">
-            <input type="submit" value="Save" class="moviebuttons">
-          </form>
+    <form method="POST" action="/trailer">
+      <input type="hidden" name="trailer_id" value="{{movie_trailer}}">
+      <input type="submit" value="Trailer" class="moviebuttons">
+    </form>
+          
+    <form action="{{url_for('save')}}", method="post">
+      <input type="hidden" name="user_id" value="{{current_user.id}}">
+      <input type="hidden" name="movie_id" value="{{movie_id}}">
+      <input type="submit" value="Save" class="moviebuttons">
+    </form>
 
           <!-- <form action="{{url_for('remove')}}", method="post">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
