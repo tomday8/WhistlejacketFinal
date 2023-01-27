@@ -83,11 +83,11 @@ def movies():
     movie_title = movie['title']
     movie_year = movie['year']
     movie_rating = movie['rating']
-    movie_trailer=movie['trailer']
+    movie_trailer = movie['trailer']
     background_link = "https://www.youtube.com/embed/{}?controls=0&autoplay=1&start=7&mute=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
     trailer_link = "https://www.youtube.com/embed/{}?autoplay=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
     return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, background_link=background_link, trailer_link=trailer_link, movie_id=movie_id)
-   
+
 def return_movie():
     query = "SELECT * FROM movies"
     result = conn.execute(query)
@@ -103,6 +103,11 @@ def return_movie_trailer(id):
     df.columns = result.keys()
     movie_trailer = df['trailer'].values[0]
     return movie_trailer
+
+@app.route("/trailer")
+def trailer():
+    trailer_link = request.args.get('trailer_link')
+    return render_template('trailer.html', trailer_link=trailer_link)
 
 @app.route('/like', methods=['POST'])
 def like():

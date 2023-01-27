@@ -23,9 +23,9 @@
       </div>
         <div class="allbuttons">
           <a class="moviebuttons" href="/movies">Try again</a>
-          <a class="moviebuttons" href={{trailer_link}}>Trailer</a>
+          <a class="moviebuttons" href="/trailer?trailer_link={{trailer_link}}">Trailer</a>
+
           
-         
           <form action="{{url_for('save')}}", method="post">
             <input type="hidden" name="user_id" value="{{current_user.id}}">
             <input type="hidden" name="movie_id" value="{{movie_id}}">
