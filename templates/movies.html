@@ -5,11 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/styles.css">
-    <script src="https://kit.fontawesome.com/ddd4f252e7.js" crossorigin="anonymous"></script>
-</head>
+
+<script src="https://kit.fontawesome.com/ddd4f252e7.js" crossorigin="anonymous"></script>
 
 </head>
-
 
 <ul id="movieul">
   <li>
@@ -26,7 +25,6 @@
 </ul>
 
 <body>
-
       <iframe src={{background_link}}></iframe> 
 
       <div class="content">
@@ -39,7 +37,13 @@
 
       <div class="allbuttons">
         <a class="moviebuttons" href="/movies"><i class="fa-solid fa-rotate-left fa-2x"></i></a>
-        <a class="moviebuttons" href={{trailer_link}}><i class="fa-solid fa-video fa-2x"></i></a>
+     
+        <form id="trailer-form" method="POST" action="/trailer">
+          <input type="hidden" name="trailer_id" value="{{movie_trailer}}">
+          <input type="submit" style="display: none;">
+          <a class="moviebuttons" href="#" onclick="document.getElementById('trailer-form').submit()"><i class="fa-solid fa-video fa-2x"></i></a>
+        </form>
+        
         <form id="like-form" action="{{url_for('like')}}", method="post">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="hidden" name="movie_id" value="{{movie_id}}">
@@ -77,7 +81,6 @@
       </div>
         
 </body>
-
 
 </html>
 
