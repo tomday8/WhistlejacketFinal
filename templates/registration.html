@@ -15,40 +15,39 @@
 <br>
 <form action="" method="post">
    {{ form.hidden_tag() }}
-   <div>
+   <div id="formid">
       {{ form.firstname(placeholder="first name") }} 
       {% for error in form.firstname.errors %}
       <p>{{ error }}</p>
       {% endfor %}
    </div>
    <br>
-   <div>
+   <div id="formid">
       {{ form.email(placeholder="email") }}
       {% for error in form.email.errors %}
       <p>{{ error }}</p>
       {% endfor %}
    </div>
    <br>
-   <div>
+   <div id="formid">
       {{ form.password1(placeholder="password") }} 
       {% for error in form.password1.errors %}
       <p>{{ error }}</p>
       {% endfor %}
    </div>
    <br>
-   <div>
+   <div id="formid">
       {{ form.password2(placeholder="confirm password") }}
       {% for error in form.password2.errors %}
       <p>{{ error }}</p>
       {% endfor %}
    </div>
    <br>
-   <div>{{ form.submit() }}
+   <div id="formid">{{ form.submit() }}
    </div>
 
 </form>
 </main>
-<p><a id="newAccount" href="{{ url_for('login') }}">Already have an account?</a></p>
 </body>
 {% endblock %}
 </html>

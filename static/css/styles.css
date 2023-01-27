@@ -1,39 +1,57 @@
 html{
     background-color: rgb(29, 29, 29);
     font-family: "Space Mono", monospace;
+    margin: 0;
 }
 
 main{
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
     display: flex;
     flex-direction: column;
-    margin: auto;
     text-align: center;
-    align-items: center;
     color: rgb(213, 211, 209);
+    margin-top: auto;
+    align-items: center;
 }
 
+body{
+    margin: 0;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100vh; */
+}
 h1{
     padding: 1rem;
 }
 
 a {
-    /* border: solid 1px black; */
     border-radius: 5px;
     text-decoration: none;
     color: inherit;
-    padding: 1rem;
-    width: 7rem;
+    width: auto;
+    margin: 1rem;
+    padding: 14px 14px;
 }
 
-/* .moviebuttons{
-    padding: 2rem;
-} */
+i {
+    width: auto;
+    height: auto;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formid {
+    padding: 0.5rem;
+}
 
 input {
     border-radius: 5px;
+    padding: 0.5rem;
 }
 
 #newAccount {
@@ -42,34 +60,23 @@ input {
 }
 
 ul {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    list-style-type: none;
+    display: flex;
     margin: 0;
-    padding: 5px;
-    overflow: hidden;
+    padding: 0;
+    justify-content: center;
 }
 
 li {
     display:flex;
     flex-direction: row;
-}
-  
-#right-nav {
-    width: 100%;
-}
+    padding: 1rem;
 
-#rightBtn {
-    float: right;
 }
 
 li a {
-    display: block;
     color: rgb(213, 211, 209);
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 14px;
     text-decoration: none;
 }
   
@@ -78,12 +85,90 @@ li a:hover {
     background-color: #222;
 }
 
+a:hover {
+    background-color: #222;   
+}
+
 #updateAccountForm {
  display: flex;
  flex-direction: column;
  float: left;
+ padding: 0.5rem;
 }
+
 
 input {
     float: left;
 }
+
+input[type=submit] {
+    margin: 0.5rem;
+}
+
+.content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: rgb(213, 211, 209);
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items:baseline;
+  }
+  
+  .moviebuttons {
+    color: rgb(213, 211, 209);
+    padding: 0.5rem;
+    cursor: pointer;
+    width: auto;
+  }
+
+  .moviebuttons:hover{
+    background-color: #222;   
+  }
+  
+  .video-container{
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .allbuttons {
+    display: flex;
+    justify-content: right;
+    width: 90%;
+    position: absolute;
+    bottom: 45px;
+  }
+      
+  iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+  
+  @media (min-aspect-ratio: 16/9) {
+    .video-container iframe {
+      /* height = 100 * (9 / 16) = 56.25 */
+      height: 56.25vw;
+    }
+  }
+      
+  @media (max-aspect-ratio: 16/9) {
+    .video-container iframe {
+      /* width = 100 / (9 / 16) = 177.777777 */
+      width: 177.78vh;
+    }
+  }
+  
+  #movieul {
+    background-color: rgba(0, 0, 0);
+    padding: 0;
+  }
+
+  .heading {
+    padding: 0;
+  }
