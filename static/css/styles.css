@@ -40,11 +40,6 @@ input {
     text-decoration: underline;
 }
 
-#rememberMe {
-    display: flex;
-    justify-content: center;
-}
-
 ul {
     position: fixed;
     top: 0;
