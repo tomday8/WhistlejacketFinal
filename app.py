@@ -84,7 +84,7 @@ def movies():
     movie_year = movie['year']
     movie_rating = movie['rating']
     movie_trailer=movie['trailer']
-    background_link = "https://www.youtube.com/embed/{}?&autoplay=1&start=7&mute=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
+    background_link = "https://www.youtube.com/embed/{}?&controls=0&showinfo=0&autoplay=1&start=7&mute=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
     trailer_link = "https://www.youtube.com/embed/{}?&autoplay=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
     return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, background_link=background_link, trailer_link=trailer_link, movie_id=movie_id)
    
