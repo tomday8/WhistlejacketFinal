@@ -76,7 +76,7 @@ def home():
 def my_account():
     return render_template('account.html')
 
-@app.route("/movies")
+@app.route("/movies", methods=["GET", "POST"])
 def movies():
     movie = return_movie()
     movie_id = movie['id']

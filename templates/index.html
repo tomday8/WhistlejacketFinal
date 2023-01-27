@@ -12,12 +12,13 @@
 <body>
     <main>
         {% if current_user.is_anonymous %}
-        <h1>Welcome to The Movie Randomizer</h1>
+        <h1 data-value="WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">WELCOME TO THE MOVIE RANDOMIZER</h1>
         {% else %}
-        <h1>Welcome {{current_user.firstname.capitalize()}} to The Movie Randomizer</h1>
+        <h1 data-value="{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER</h1>
         {% endif %}  
-    <a href="/movies">Click me!</a>
-</main>
+        <a href="/movies"><i class="fa-solid fa-film fa-4x"></i></a>
+    </main>
+    <script src="../static/js/script.js"></script>
 </body>
 {% endblock %}
 </html>
