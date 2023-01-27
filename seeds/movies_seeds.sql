@@ -5,8 +5,8 @@ CREATE TABLE movies (
     title text,
     year int,
     rating decimal(2,1),
-    trailer text,
-    ON DELETE CASCADE
+    trailer text
+    -- ON DELETE CASCADE
 );
 
 INSERT INTO movies ("title", "year", "rating", "trailer") VALUES
@@ -17,13 +17,11 @@ INSERT INTO movies ("title", "year", "rating", "trailer") VALUES
 ('The Lord of the Rings: The Return of the King', 2003, 8.9, 'JFpIPkJ31Uw'),
 ('Pulp Fiction', 1994, 8.8, 'tGpTpVyI_OQ'),
 ('The Lord of the Rings: The Fellowship of the Ring', 2001, 8.8, 'cKEGZ-CvWHk'),
-('The Good, the Bad and the Ugly', 1996, 8.8, 'IFNUGzCOQoI'),
 ('Forrest Gump', 1994, 8.8, 'bLvqoHBptjg'),
 ('The Lord of the Rings: The Two Towers', 2002, 8.7, 'hYcw5ksV8YQ'),
 ('Inception', 2010, 8.7, 'YoHD9XEInc0'),
 ('Star Wars: Episode V - The Empire Strikes Back', 1980, 8.7, 'JNwNXF9Y6kY'),
 ('The Matrix', 1999, 8.7, 'EweuTOz7g-g'),
-('GoodFellas', 1990, 8.7, 'xWMxvFvhAB8'),
 ('One Flew Over the Cuckoo''s Nest', 1975, 8.6, 'OXrcDonY-B8'),
 ('City of God', 2002, 8.6, 'RfnGQetbX-U'),
 ('Life is Beautiful', 1997, 8.6, '8CTjcVr9Iao'),
