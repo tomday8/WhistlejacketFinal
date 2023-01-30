@@ -184,16 +184,21 @@ a.icon-left {
   }
 
   .liked-movies {
-    text-align: left;
     margin: auto;
+    text-align: left;
   }
 
   .saved-movies {
-    text-align: left;
     margin: auto;
+    text-align: left;
   }
 
   .disliked-movies {
-    text-align: left;
     margin: auto;
+    text-align: left;
+  }
+
+
+  #accounth1{
+    padding: 0;
   }
