@@ -10,26 +10,9 @@ CREATE TABLE movies (
 );
 
 INSERT INTO movies ("title", "year", "rating", "trailer") VALUES
-('Shawshank Redemption', 1994, 9.2, 'PLl99DlL6b4'),
-('The Godfather', 1972, 9.2, 'UaVTIH8mujA'),
 ('The Dark Knight', 2008, 9.0, 'LDG9bisJEaI'),
-('The Godfather: Part II', 1974, 9.0, 'OA1ij0alE0w'),
-('The Lord of the Rings: The Return of the King', 2003, 8.9, 'JFpIPkJ31Uw'),
-('Pulp Fiction', 1994, 8.8, 'tGpTpVyI_OQ'),
-('The Lord of the Rings: The Fellowship of the Ring', 2001, 8.8, 'cKEGZ-CvWHk'),
-('Forrest Gump', 1994, 8.8, 'bLvqoHBptjg'),
-('The Lord of the Rings: The Two Towers', 2002, 8.7, 'hYcw5ksV8YQ'),
 ('Inception', 2010, 8.7, 'YoHD9XEInc0'),
-('Star Wars: Episode V - The Empire Strikes Back', 1980, 8.7, 'JNwNXF9Y6kY'),
-('The Matrix', 1999, 8.7, 'EweuTOz7g-g'),
-('One Flew Over the Cuckoo''s Nest', 1975, 8.6, 'OXrcDonY-B8'),
-('City of God', 2002, 8.6, 'RfnGQetbX-U'),
-('Life is Beautiful', 1997, 8.6, '8CTjcVr9Iao'),
 ('Interstellar', 2014, 8.6, 'zSWdZVtXT7E'),
-('The Green Mile', 1999, 8.6, 'Ki4haFrqSrw'),
-('Star Wars', 1977, 8.5, 'vZ734NWnAHA'),
-('Terminator 2: Judgment Day', 1991, 8.5, 'CRRlbK5w8AE'),
-('Back to the Future', 1985, 8.5, 'qvsgGtivCgs'),
 ('Strange World', 2022, 5.6, 'bKh2G73gCCs'),
 ('Lightyear', 2022, 6.1, 'BwZs3H_UN3k'),
 ('The Greatest Showman', 2017, 7.5, 'AXCTMGYUg9A'),
@@ -39,10 +22,25 @@ INSERT INTO movies ("title", "year", "rating", "trailer") VALUES
 ('Free Guy', 2021, 7.1, 'JORN2hkXLyM'),
 ('Luck', 2022, 6.4, 'xSG5UX0EQVg'),
 ('The Banker', 2020, 7.3, 'J_-nk9-sMus'),
-('Finch', 2021, 6.9, 'oah4GNeFcsw');
-
-
-
-
+('Finch', 2021, 6.9, 'oah4GNeFcsw'),
+('Where the Crawdads Sing', 2022, 7.1, 'PY3808Iq0Tg'),
+('Elvis', 2022, 7.4, 'wBDLRvjHVOY'),
+('The Gray Man', 2022, 6.5, 'BmllggGO4pM'),
+('Death on the Nile', 2022, 6.3, 'dZRqB0JLizw'),
+('The Lion King', 2019, 6.8, '7TavVZMewpY'),
+('Tenet', 2020, 7.3, 'LdOM0x0XDMo'),
+('Turning Red', 2022, 7.0, 'XdKzUbAiswE'),
+('Everything Everywhere All at Once', 2022, 8.0, 'wxN1T1uxQ2g'),
+('Ticket to Paradise', 2022, 6.2, 'hkP4tVTdsz8'),
+('Fantastic Beasts and Where to Find Them', 2016, 7.2, 'ViuDsy7yb8M'),
+('Jurassic World: Dominion', 2022, 5.2, 'fb5ELWi-ekk'),
+('Avengers: Endgame', 2019, 8.2, 'TcMBFSGVi1c'),
+('Captain Marvel', 2019, 6.8, 'Z1BCujX3pw8'),
+('Thor: Ragnarok', 2017, 7.9, 'ue80QwXMRHg'),
+('Prisoners', 2013, 8.1, '2SupordEUpw'),
+('Manchester by the Sea', 2016, 7.8, 'NxQmuJnrjxg'),
+('The Theory of Everything', 2014, 7.7, 'Salz7uGp72c'),
+('Baby Driver', 2017, 7.6, 'z2z857RSfhk'),
+('Blade Runner 2049', 2017, 8.0, 'gCcx85zbxz4');
 
 -- To seed db: psql -h 127.0.0.1 whistlejacket-randomizer < seeds/movies_seeds.sql;
