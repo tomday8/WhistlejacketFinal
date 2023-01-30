@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles.css">
+    {% extends 'base.html' %}
+    <title>Account</title>
+</head>
+{% block main %}
+
+<body>
+   
+    <main>
+    <div id="accountpage">
+        
+      <div class="liked-movies">
+        <h1 id="accounth1">My likes:</h1>
+
+        {% if liked_movies %}
+          {% for movie in liked_movies %}
+          <p>{{ movie.title }}</p>
+        {% endfor %}
+        {% else %}
+          <p>No liked movies to display.</p>
+        {% endif %}
+      </div>
+
+    <div class="disliked-movies">
+      <h1 id="accounth1">My dislikes:</h1>
+    {% if disliked_movies %}
+      {% for movie in disliked_movies %}
+      <p>{{ movie.title }}</p>
+    {% endfor %}
+    {% else %}
+      <p>No disliked movies to display.</p>
+    {% endif %}
+    </div>
+    </div>
+</main>
+</body>
+{% endblock %}
+</html>
