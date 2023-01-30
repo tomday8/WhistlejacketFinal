@@ -13,30 +13,73 @@
 <body>
    
     <main>
-    <h1>ACCOUNT</h1>
-      <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post">
-        <input type="text" name="firstname" placeholder="{{current_user.firstname}}">
-        <input type="hidden" name="user_id" value="{{current_user.id}}">
-        <input type="submit" value="Update name">
-      </form>
+    <div id="accountpage">
+      <div id="updateaccountdiv">
+      <h1>ACCOUNT</h1>
+        <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post">
+          <input type="text" name="firstname" placeholder="{{current_user.firstname}}">
+          <input type="hidden" name="user_id" value="{{current_user.id}}">
+          <input type="submit" value="Update name">
+        </form>
 
-      <form id="updateAccountForm" action="{{url_for('updateEmail')}}", method="post">
-        <input type="text" name="email" placeholder="{{current_user.email}}">
-        <input type="hidden" name="user_id" value="{{current_user.id}}">
-        <input type="submit" value="Update email">
-      </form>
+        <form id="updateAccountForm" action="{{url_for('updateEmail')}}", method="post">
+          <input type="text" name="email" placeholder="{{current_user.email}}">
+          <input type="hidden" name="user_id" value="{{current_user.id}}">
+          <input type="submit" value="Update email">
+        </form>
 
-      <form id="updateAccountForm" action="{{url_for('updatePassword')}}", method="post">
-        <input type="password" name="password">
-        <input type="hidden" name="user_id" value="{{current_user.id}}">
-        <input type="submit" value="Update password">
-      </form>
-      
-      <form id="updateAccountForm" action="{{url_for('deleteAccount')}}", method="post">
-        <input type="hidden" name="user_id" value="{{current_user.id}}">
-        <input type="submit" value="Delete account">
-      </form>
+        <form id="updateAccountForm" action="{{url_for('updatePassword')}}", method="post">
+          <input type="password" name="password">
+          <input type="hidden" name="user_id" value="{{current_user.id}}">
+          <input type="submit" value="Update password">
+        </form>
 
+        <form id="updateAccountForm" action="{{url_for('deleteAccount')}}", method="post">
+          <input type="hidden" name="user_id" value="{{current_user.id}}">
+          <input type="submit" value="Delete account">
+        </form>
+      </div>
+
+      <div class="liked-movies">
+        <h1>My likes:</h1>
+
+        {% if liked_movies %}
+          <ul>
+          {% for movie in liked_movies %}
+          <li>{{ movie.title }}</li>
+        {% endfor %}
+          </ul>
+        {% else %}
+          <p>No liked movies to display.</p>
+        {% endif %}
+      </div>
+
+    <div class="saved-movies">
+      <h1>Saved for later:</h1>
+        {% if saved_movies %}
+          <ul>
+          {% for movie in saved_movies %}
+          <li>{{ movie.title }}</li>
+          {% endfor %}
+          </ul>
+        {% else %}
+          <p>No saved movies to display.</p>
+        {% endif %}
+    </div>
+
+    <div class="disliked-movies">
+      <h1>My dislikes:</h1>
+    {% if disliked_movies %}
+      <ul>
+      {% for movie in disliked_movies %}
+      <li>{{ movie.title }}</li>
+    {% endfor %}
+      </ul>
+    {% else %}
+      <p>No disliked movies to display.</p>
+    {% endif %}
+    </div>
+    </div>
 </main>
 </body>
 {% endblock %}

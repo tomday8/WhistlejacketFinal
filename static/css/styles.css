@@ -89,13 +89,6 @@ a:hover {
     width: auto;
 }
 
-#updateAccountForm {
- display: flex;
- flex-direction: column;
- float: left;
- padding: 0.5rem;
-}
-
 input {
     float: left;
 }
@@ -176,4 +169,31 @@ a.icon-left {
 
   .heading {
     padding: 0;
+  }
+
+  #accountpage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #updateaccountdiv {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  .liked-movies {
+    text-align: left;
+    margin: auto;
+  }
+
+  .saved-movies {
+    text-align: left;
+    margin: auto;
+  }
+
+  .disliked-movies {
+    text-align: left;
+    margin: auto;
   }
