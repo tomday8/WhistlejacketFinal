@@ -16,8 +16,9 @@
       {% if current_user.is_anonymous %}
           <a href="{{ url_for('login') }}"><i class="fa-solid fa-right-to-bracket fa-2x"></i></a>
       {% else %}
-          <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket fa-2x"></i></a>
-          <a href="{{ url_for('my_account') }}"><i class="fa-solid fa-user fa-2x"></i></a>
+      <a href="/"><i class="fa-solid fa-list fa-2x"></i></a>
+      <a href="{{ url_for('my_account') }}"><i class="fa-solid fa-gear fa-2x"></i></a>
+      <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket fa-2x"></i></a>
       {% endif %}  
       
   </li>
@@ -61,7 +62,7 @@
         <form id="save-form" action="{{url_for('save')}}", method="post">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="hidden" name="movie_id" value="{{movie_id}}">
-          <input type="submit" style="display: none;"">
+          <input type="submit" style="display: none;">
           <a class="moviebuttons" href="#" onclick="document.getElementById('save-form').submit()"><i class="fa-solid fa-plus fa-2x"></i></a>
         </form>
         {% endif %} 
