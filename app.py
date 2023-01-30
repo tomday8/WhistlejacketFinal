@@ -75,7 +75,10 @@ def my_account():
 
 @app.route("/movies", methods=["GET", "POST"])
 def movies():
-    movie = return_movie()
+    if current_user.is_authenticated:
+        movie = return_movie(current_user.id)
+    else:
+        movie = return_movie()
     movie_id = movie['id']
     movie_title = movie['title']
     movie_year = movie['year']
@@ -85,13 +88,19 @@ def movies():
     trailer_link = "https://www.youtube.com/embed/{}?autoplay=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
     return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, movie_trailer=movie_trailer, background_link=background_link, trailer_link=trailer_link, movie_id=movie_id)
 
-def return_movie():
-    query = "SELECT * FROM movies"
-    result = conn.execute(query)
+
+def return_movie(user_id=None):
+    if current_user.is_authenticated:
+        query = "SELECT * FROM movies WHERE id NOT IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id)
+        result = conn.execute(query)
+    else:
+        query = "SELECT * FROM movies"
+        result = conn.execute(query)
     df = pd.DataFrame(result.fetchall())
     df.columns = result.keys()
     movie = random.choice(df.to_dict("records"))
     return movie
+
 
 def return_movie_trailer(id):
     query = "SELECT trailer FROM movies WHERE id ={}".format(id)
