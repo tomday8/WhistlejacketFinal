@@ -71,7 +71,10 @@ def home():
 
 @app.route("/account")
 def my_account():
-    return render_template('account.html')
+    liked_movies = get_likes(current_user.id)
+    saved_movies = get_saves(current_user.id)
+    disliked_movies = get_dislikes(current_user.id)
+    return render_template('account.html', liked_movies=liked_movies, saved_movies=saved_movies, disliked_movies=disliked_movies)
 
 @app.route("/movies", methods=["GET", "POST"])
 def movies():
@@ -89,26 +92,6 @@ def movies():
     return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, movie_trailer=movie_trailer, background_link=background_link, trailer_link=trailer_link, movie_id=movie_id)
 
 
-def return_movie(user_id=None):
-    if current_user.is_authenticated:
-        query = "SELECT * FROM movies WHERE id NOT IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id)
-        result = conn.execute(query)
-    else:
-        query = "SELECT * FROM movies"
-        result = conn.execute(query)
-    df = pd.DataFrame(result.fetchall())
-    df.columns = result.keys()
-    movie = random.choice(df.to_dict("records"))
-    return movie
-
-
-def return_movie_trailer(id):
-    query = "SELECT trailer FROM movies WHERE id ={}".format(id)
-    result = conn.execute(query)
-    df = pd.DataFrame(result.fetchall())
-    df.columns = result.keys()
-    movie_trailer = df['trailer'].values[0]
-    return movie_trailer
 
 @app.route("/trailer", methods=['POST'])
 def trailer():
@@ -193,3 +176,52 @@ def updatePassword():
     query="""UPDATE "user" SET password_hash = '{}' WHERE id ={}""".format(password_hash,user_id)
     conn.execute(query)
     return render_template('account.html')
+
+
+def return_movie(user_id=None):
+    if current_user.is_authenticated:
+        query = "SELECT * FROM movies WHERE id NOT IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id)
+        result = conn.execute(query)
+    else:
+        query = "SELECT * FROM movies"
+        result = conn.execute(query)
+    df = pd.DataFrame(result.fetchall())
+    df.columns = result.keys()
+    movie = random.choice(df.to_dict("records"))
+    return movie
+
+
+def return_movie_trailer(id):
+    query = "SELECT trailer FROM movies WHERE id ={}".format(id)
+    result = conn.execute(query)
+    df = pd.DataFrame(result.fetchall())
+    df.columns = result.keys()
+    movie_trailer = df['trailer'].values[0]
+    return movie_trailer
+
+def get_likes(user_id):
+    query = "SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = 1)".format(user_id)
+    result = conn.execute(query)
+    df = pd.DataFrame(result.fetchall())
+    if len(df.columns) == 0:
+        return []
+    df.columns = result.keys()
+    return df.to_dict("records")
+
+def get_saves(user_id):
+    query = "SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND save_flag = 1)".format(user_id)
+    result = conn.execute(query)
+    df = pd.DataFrame(result.fetchall())
+    if len(df.columns) == 0:
+        return []
+    df.columns = result.keys()
+    return df.to_dict("records")
+
+def get_dislikes(user_id):
+    query = "SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id)
+    result = conn.execute(query)
+    df = pd.DataFrame(result.fetchall())
+    if len(df.columns) == 0:
+        return []
+    df.columns = result.keys()
+    return df.to_dict("records")
