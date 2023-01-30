@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, request, url_for, redirect, session
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 import sqlalchemy as sal
 import pandas as pd
 import random
@@ -103,7 +103,7 @@ def trailer():
 def like():
     user_id = request.form["user_id"]
     movie_id = request.form["movie_id"]
-    query = text("INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 1;".format(user_id, movie_id))
+    query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 1;".format(user_id, movie_id)
     conn.execute(query)
     return '', 204
 
@@ -112,7 +112,7 @@ def like():
 def dislike():
     user_id = request.form["user_id"]
     movie_id = request.form["movie_id"]
-    query = text("INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, -1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = -1;".format(user_id, movie_id))
+    query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, -1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = -1;".format(user_id, movie_id)
     conn.execute(query)
     return '', 204
 
@@ -121,7 +121,7 @@ def dislike():
 def neutral():
     user_id = request.form["user_id"]
     movie_id = request.form["movie_id"]
-    query = text("INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 0) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 0;".format(user_id, movie_id))
+    query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 0) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 0;".format(user_id, movie_id)
     conn.execute(query)
     return '', 204
 
@@ -130,7 +130,7 @@ def neutral():
 def remove():
     user_id = request.form["user_id"]
     movie_id = request.form["movie_id"]
-    query = text("UPDATE user_movies SET save_flag = 0 WHERE user_id= {} AND movie_id = {}".format(user_id, movie_id))
+    query="UPDATE user_movies SET save_flag = 0 WHERE user_id= {} AND movie_id = {}".format(user_id, movie_id)
     conn.execute(query)
     return '', 204
 
@@ -139,14 +139,14 @@ def remove():
 def save():
     user_id = request.form["user_id"]
     movie_id = request.form["movie_id"]
-    query = text("INSERT INTO user_movies (user_id, movie_id, save_flag) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET save_flag = 1;".format(user_id, movie_id))
+    query="INSERT INTO user_movies (user_id, movie_id, save_flag) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET save_flag = 1;".format(user_id, movie_id)
     conn.execute(query)
     return '', 204
 
 @app.route('/deleteAccount', methods=['POST'])
 def deleteAccount():
     user_id = request.form["user_id"]
-    query = text('DELETE FROM "user" WHERE id={}'.format(user_id))
+    query='DELETE FROM "user" WHERE id={}'.format(user_id)
     conn.execute(query)
     session.clear()
     return render_template('index.html')
@@ -155,7 +155,7 @@ def deleteAccount():
 def updateName():
     user_id = request.form["user_id"]
     firstname = request.form["firstname"]
-    query = text("""UPDATE "user" SET firstname = '{}' WHERE id ={}""".format(firstname,user_id))
+    query="""UPDATE "user" SET firstname = '{}' WHERE id ={}""".format(firstname,user_id)
     conn.execute(query)
     return render_template('account.html')
 
@@ -163,7 +163,7 @@ def updateName():
 def updateEmail():
     user_id = request.form["user_id"]
     email = request.form["email"]
-    query = text("""UPDATE "user" SET email = '{}' WHERE id ={}""".format(email,user_id))
+    query="""UPDATE "user" SET email = '{}' WHERE id ={}""".format(email,user_id)
     conn.execute(query)
     return render_template('account.html')
 
@@ -173,17 +173,17 @@ def updatePassword():
     user_id = request.form["user_id"]
     password = request.form["password"]
     password_hash = generate_password_hash(password)
-    query = text("""UPDATE "user" SET password_hash = '{}' WHERE id ={}""".format(password_hash,user_id))
+    query="""UPDATE "user" SET password_hash = '{}' WHERE id ={}""".format(password_hash,user_id)
     conn.execute(query)
     return render_template('account.html')
 
 
 def return_movie(user_id=None):
     if current_user.is_authenticated:
-        query = text("SELECT * FROM movies WHERE id NOT IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id))
+        query = "SELECT * FROM movies WHERE id NOT IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id)
         result = conn.execute(query)
     else:
-        query = text("SELECT * FROM movies")
+        query = "SELECT * FROM movies"
         result = conn.execute(query)
     df = pd.DataFrame(result.fetchall())
     df.columns = result.keys()
@@ -192,7 +192,7 @@ def return_movie(user_id=None):
 
 
 def return_movie_trailer(id):
-    query = text("SELECT trailer FROM movies WHERE id ={}".format(id))
+    query = "SELECT trailer FROM movies WHERE id ={}".format(id)
     result = conn.execute(query)
     df = pd.DataFrame(result.fetchall())
     df.columns = result.keys()
@@ -200,7 +200,7 @@ def return_movie_trailer(id):
     return movie_trailer
 
 def get_likes(user_id):
-    query = text("SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = 1)".format(user_id))
+    query = "SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = 1)".format(user_id)
     result = conn.execute(query)
     df = pd.DataFrame(result.fetchall())
     if len(df.columns) == 0:
@@ -209,7 +209,7 @@ def get_likes(user_id):
     return df.to_dict("records")
 
 def get_saves(user_id):
-    query = text("SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND save_flag = 1)".format(user_id))
+    query = "SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND save_flag = 1)".format(user_id)
     result = conn.execute(query)
     df = pd.DataFrame(result.fetchall())
     if len(df.columns) == 0:
@@ -218,7 +218,7 @@ def get_saves(user_id):
     return df.to_dict("records")
 
 def get_dislikes(user_id):
-    query = text("SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id))
+    query = "SELECT * FROM movies WHERE id IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id)
     result = conn.execute(query)
     df = pd.DataFrame(result.fetchall())
     if len(df.columns) == 0:
