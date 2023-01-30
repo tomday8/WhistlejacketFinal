@@ -15,7 +15,7 @@
     <main>
     <h1>ACCOUNT</h1>
       <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post">
-        <input type="text" name="firstname" placeholder="{{current_user.firstname()}}">
+        <input type="text" name="firstname" placeholder="{{current_user.firstname}}">
         <input type="hidden" name="user_id" value="{{current_user.id}}">
         <input type="submit" value="Update name">
       </form>
