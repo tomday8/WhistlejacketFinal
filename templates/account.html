@@ -38,41 +38,9 @@
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="submit" value="Delete account">
         </form>
+
+        <a href="/likes">Manage my likes</a>
       </div>
-
-      <div class="liked-movies">
-        <h1 id="accounth1">My likes:</h1>
-
-        {% if liked_movies %}
-          {% for movie in liked_movies %}
-          <p>{{ movie.title }}</p>
-        {% endfor %}
-        {% else %}
-          <p>No liked movies to display.</p>
-        {% endif %}
-      </div>
-
-    <div class="saved-movies">
-      <h1 id="accounth1">Saved for later:</h1>
-        {% if saved_movies %}
-          {% for movie in saved_movies %}
-          <p>{{ movie.title }}</p>
-          {% endfor %}
-        {% else %}
-          <p>No saved movies to display.</p>
-        {% endif %}
-    </div>
-
-    <div class="disliked-movies">
-      <h1 id="accounth1">My dislikes:</h1>
-    {% if disliked_movies %}
-      {% for movie in disliked_movies %}
-      <p>{{ movie.title }}</p>
-    {% endfor %}
-    {% else %}
-      <p>No disliked movies to display.</p>
-    {% endif %}
-    </div>
     </div>
 </main>
 </body>

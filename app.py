@@ -71,10 +71,7 @@ def home():
 
 @app.route("/account")
 def my_account():
-    liked_movies = get_likes(current_user.id)
-    saved_movies = get_saves(current_user.id)
-    disliked_movies = get_dislikes(current_user.id)
-    return render_template('account.html', liked_movies=liked_movies, saved_movies=saved_movies, disliked_movies=disliked_movies)
+    return render_template('account.html')
 
 @app.route("/movies", methods=["GET", "POST"])
 def movies():
@@ -176,6 +173,19 @@ def updatePassword():
     query="""UPDATE "user" SET password_hash = '{}' WHERE id ={}""".format(password_hash,user_id)
     conn.execute(query)
     return render_template('account.html')
+
+@app.route('/watch-list')
+def watchlist():
+        saved_movies = get_saves(current_user.id)
+        return render_template('watchlist.html', saved_movies=saved_movies)
+
+
+@app.route('/likes')
+def likes():
+    liked_movies = get_likes(current_user.id)
+    disliked_movies = get_dislikes(current_user.id)
+    return render_template('likes.html', liked_movies=liked_movies, disliked_movies=disliked_movies)
+
 
 
 def return_movie(user_id=None):

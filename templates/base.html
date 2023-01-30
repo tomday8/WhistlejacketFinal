@@ -15,7 +15,7 @@
         {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}"><i class="fa-solid fa-right-to-bracket fa-2x"></i></a>
         {% else %}
-        <a href="/"><i class="fa-solid fa-list fa-2x"></i></a>
+        <a href="{{ url_for('watchlist') }}"><i class="fa-solid fa-list fa-2x"></i></a>
         <a href="{{ url_for('my_account') }}"><i class="fa-solid fa-gear fa-2x"></i></a>
         <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket fa-2x"></i></a>
         {% endif %}  
