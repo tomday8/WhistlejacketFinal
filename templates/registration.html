@@ -12,6 +12,13 @@
 <body>
    <main>
 <h1>Create an Account</h1>
+   {% with messages = get_flashed_messages() %}
+   {% if messages %}
+   {% for message in messages %}
+   <p style="color: red;">Error: {{ message }}</p>
+   {% endfor %}
+   {% endif %}
+   {% endwith %}
 <br>
 <form action="" method="post">
    {{ form.hidden_tag() }}
@@ -45,8 +52,8 @@
    <br>
    <div id="formid">{{ form.submit() }}
    </div>
-
 </form>
+
 </main>
 </body>
 {% endblock %}
