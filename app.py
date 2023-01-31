@@ -50,15 +50,18 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email = form.email.data).first()
-        if user is not None and user.check_password(form.password.data):
-            login_user(user)
-            next = request.args.get("next")
-            return redirect(next or url_for('home'))
-        flash('Invalid email address or Password.')    
-    return render_template('login.html', form=form)
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    else:
+        form = LoginForm()
+        if form.validate_on_submit():
+            user = User.query.filter_by(email = form.email.data).first()
+            if user is not None and user.check_password(form.password.data):
+                login_user(user)
+                next = request.args.get("next")
+                return redirect(next or url_for('home'))
+            flash('Invalid email address or Password.')    
+        return render_template('login.html', form=form)
 
 @app.route("/logout")
 def logout():
@@ -71,7 +74,10 @@ def home():
 
 @app.route("/account")
 def my_account():
-    return render_template('account.html')
+    if current_user.is_authenticated:
+        return render_template('account.html')
+    else:
+        return redirect(url_for('login'))
 
 @app.route("/movies", methods=["GET", "POST"])
 def movies():
@@ -176,15 +182,20 @@ def updatePassword():
 
 @app.route('/watch-list')
 def watchlist():
+    if current_user.is_authenticated:
         saved_movies = get_saves(current_user.id)
         return render_template('watchlist.html', saved_movies=saved_movies)
-
+    else:
+        return redirect(url_for('home'))
 
 @app.route('/likes')
 def likes():
-    liked_movies = get_likes(current_user.id)
-    disliked_movies = get_dislikes(current_user.id)
-    return render_template('likes.html', liked_movies=liked_movies, disliked_movies=disliked_movies)
+    if current_user.is_authenticated:
+        liked_movies = get_likes(current_user.id)
+        disliked_movies = get_dislikes(current_user.id)
+        return render_template('likes.html', liked_movies=liked_movies, disliked_movies=disliked_movies)
+    else:
+        return redirect(url_for('home'))
 
 
 
