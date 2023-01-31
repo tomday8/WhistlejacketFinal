@@ -20,7 +20,15 @@
 
         {% if liked_movies %}
           {% for movie in liked_movies %}
+        <div class="likedmovie">
           <p>{{ movie.title }}</p>
+          <form id="neutral-form" method="post" action="{{ url_for('neutral') }}">
+            <input type="hidden" name="user_id" value="{{current_user.id}}">
+            <input type="hidden" name="movie_id" value="{{movie.id}}">
+            <input type="submit" style="display: none;">
+            <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form').submit()"><i class="fa-solid fa-minus"></i></a>
+          </form>
+        </div>
         {% endfor %}
         {% else %}
           <p>No liked movies to display.</p>
@@ -31,7 +39,16 @@
       <h1 id="accounth1">My dislikes:</h1>
     {% if disliked_movies %}
       {% for movie in disliked_movies %}
-      <p>{{ movie.title }}</p>
+      <div class="likedmovie">
+        <p>{{ movie.title }}</p>
+        <p>{{ movie.title }}</p>
+        <form id="neutral-form" method="post" action="{{ url_for('neutral') }}">
+          <input type="hidden" name="user_id" value="{{current_user.id}}">
+          <input type="hidden" name="movie_id" value="{{movie.id}}">
+          <input type="submit" style="display: none;">
+          <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form').submit()"><i class="fa-solid fa-minus"></i></a>
+        </form>
+      </div>
     {% endfor %}
     {% else %}
       <p>No disliked movies to display.</p>

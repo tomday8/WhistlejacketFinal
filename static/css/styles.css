@@ -221,3 +221,8 @@ a.icon-left {
   .moviebuttons:focus{
     animation: zoom-in-zoom-out 0.6s ease;
   }
+
+  .likedmovie{
+    display: flex;
+    align-items: center;
+  }
