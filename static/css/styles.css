@@ -178,6 +178,13 @@ a.icon-left {
     justify-content: center;
   }
 
+  #updateAccountForm {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+  }
+
   #updateaccountdiv {
     display: flex;
     flex-direction: column;
