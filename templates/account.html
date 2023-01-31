@@ -16,27 +16,52 @@
     <div id="accountpage">
       <div id="updateaccountdiv">
       <h1>ACCOUNT</h1>
-        <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post">
+        <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post", onsubmit="name_confirmation()">
           <input type="text" name="firstname" placeholder="{{current_user.firstname}}">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="submit" value="Update name">
+          <script>
+            function name_confirmation() {
+            alert("Name updated");
+            }
+          </script>
         </form>
 
-        <form id="updateAccountForm" action="{{url_for('updateEmail')}}", method="post">
+        <form id="updateAccountForm" action="{{url_for('updateEmail')}}", method="post", onsubmit="email_confirmation()">
           <input type="text" name="email" placeholder="{{current_user.email}}">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="submit" value="Update email">
+          <script>
+            function email_confirmation() {
+            alert("Email updated");
+            }
+          </script>
         </form>
 
-        <form id="updateAccountForm" action="{{url_for('updatePassword')}}", method="post">
-          <input type="password" name="password">
+        <form id="updateAccountForm" action="{{url_for('updatePassword')}}", method="post", onsubmit="pword_confirmation()">
+          <input type="password" name="password" minlength="6">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="submit" value="Update password">
+          <script>
+            function pword_confirmation() {
+            alert("Password updated");
+            }
+          </script>
         </form>
 
-        <form id="updateAccountForm" action="{{url_for('deleteAccount')}}", method="post">
+        <form id="updateAccountForm" action="{{url_for('deleteAccount')}}", method="post", onsubmit="delete_confirm(event)">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="submit" value="Delete account">
+          <script>
+            function delete_confirm(e) {
+              if(confirm('Are you sure?'))
+                alert('Account Deleted');
+              else {
+               alert('Action cancelled');
+               e.preventDefault();
+              }
+            }
+          </script>
         </form>
 
         <a href="/likes">Manage my likes</a>
