@@ -139,7 +139,7 @@ def remove():
     movie_id = request.form["movie_id"]
     query="UPDATE user_movies SET save_flag = 0 WHERE user_id= {} AND movie_id = {}".format(user_id, movie_id)
     conn.execute(query)
-    return '', 204
+    return redirect(url_for('watchlist'))
 
 
 @app.route('/save', methods=['POST'])

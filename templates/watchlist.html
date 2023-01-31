@@ -17,7 +17,15 @@
       <h1 id="accounth1">Your watch list:</h1>
         {% if saved_movies %}
           {% for movie in saved_movies %}
-          <p>{{ movie.title }}</p>
+          <div class="likedmovie">
+            <p>{{ movie.title }}</p>
+            <form id="remove-form" method="post" action="{{ url_for('remove') }}">
+              <input type="hidden" name="user_id" value="{{current_user.id}}">
+              <input type="hidden" name="movie_id" value="{{movie.id}}">
+              <input type="submit" style="display: none;">
+              <a class="moviebuttons" href="#" onclick="document.getElementById('remove-form').submit()"><i class="fa-solid fa-x"></i></a>
+            </form>
+          </div>
           {% endfor %}
         {% else %}
           <p>No saved movies to display.</p>
