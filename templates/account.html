@@ -17,9 +17,9 @@
       <div id="updateaccountdiv">
       <h1>ACCOUNT</h1>
         <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post", onsubmit="name_confirmation()">
-          <input type="text" name="firstname" placeholder="{{current_user.firstname}}">
+          <input type="text" name="firstname" placeholder="First name">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
-          <input type="submit" value="Update name">
+          <input type="submit" value="Update">
           <script>
             function name_confirmation() {
             alert("Name updated");
@@ -28,9 +28,9 @@
         </form>
 
         <form id="updateAccountForm" action="{{url_for('updateEmail')}}", method="post", onsubmit="email_confirmation()">
-          <input type="text" name="email" placeholder="{{current_user.email}}">
+          <input type="text" name="email" placeholder="Email address">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
-          <input type="submit" value="Update email">
+          <input type="submit" value="Update">
           <script>
             function email_confirmation() {
             alert("Email updated");
@@ -39,9 +39,9 @@
         </form>
 
         <form id="updateAccountForm" action="{{url_for('updatePassword')}}", method="post", onsubmit="pword_confirmation()">
-          <input type="password" name="password" minlength="6">
+          <input type="password" name="password" minlength="6" placeholder="Password">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
-          <input type="submit" value="Update password">
+          <input type="submit" value="Update">
           <script>
             function pword_confirmation() {
             alert("Password updated");
@@ -49,7 +49,7 @@
           </script>
         </form>
 
-        <form id="updateAccountForm" action="{{url_for('deleteAccount')}}", method="post", onsubmit="delete_confirm(event)">
+        <form id="deleteAccount" action="{{url_for('deleteAccount')}}", method="post", onsubmit="delete_confirm(event)">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="submit" value="Delete account">
           <script>
@@ -63,8 +63,7 @@
             }
           </script>
         </form>
-
-        <a href="/likes">Manage my likes</a>
+        <a href="/likes" id="moviebuttons"><i class="fa-regular fa-heart fa-2x"></i><br><br>Manage Likes</a>
       </div>
     </div>
 </main>
