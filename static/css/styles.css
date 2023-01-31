@@ -264,3 +264,8 @@ a.icon-left {
 #rattle {
     animation: shake 3s linear infinite;
 }
+
+
+#titlepage {
+  font-size: 50px;
+}
