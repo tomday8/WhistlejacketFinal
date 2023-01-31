@@ -41,12 +41,11 @@
       {% for movie in disliked_movies %}
       <div class="likedmovie">
         <p>{{ movie.title }}</p>
-        <p>{{ movie.title }}</p>
         <form id="neutral-form" method="post" action="{{ url_for('neutral') }}">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="hidden" name="movie_id" value="{{movie.id}}">
           <input type="submit" style="display: none;">
-          <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form').submit()"><i class="fa-solid fa-minus"></i></a>
+          <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form').submit()"><i class="fa-solid fa-x"></i></a>
         </form>
       </div>
     {% endfor %}
