@@ -38,8 +38,6 @@ def register():
     if form.validate_on_submit():
         existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user:
-            # form.email.errors.append("An account with this email already exists.")
-            # flash('An account with this email already exists.')
             flash("An account with this email already exists.")
             return render_template('registration.html', form=form)
         else:
