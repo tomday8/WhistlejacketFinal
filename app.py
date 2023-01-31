@@ -120,7 +120,7 @@ def neutral():
     movie_id = request.form["movie_id"]
     query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 0) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 0;".format(user_id, movie_id)
     conn.execute(query)
-    return '', 204
+    return redirect(url_for('likes'))
 
 
 @app.route('/remove', methods=['POST'])
