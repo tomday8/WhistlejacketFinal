@@ -179,7 +179,7 @@ a.icon-left {
 
   #accountpage {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
   }
 
@@ -197,9 +197,13 @@ a.icon-left {
   }
 
   .liked-movies {
-    margin: auto;
+    /* margin: auto; */
+    /* margin-left: auto;
+    margin-right: auto; */
     text-align: left;
     vertical-align: top;
+    margin-left: 12rem;
+    width: 50%;
   }
 
   .saved-movies {
@@ -208,9 +212,13 @@ a.icon-left {
   }
 
   .disliked-movies {
-    margin: auto;
+    /* margin: auto; */
+    /* margin-left: auto;
+    margin-right: auto; */
     text-align: left;
     vertical-align: top;
+    margin-right: 2rem;
+    width: 50%;
   }
 
 
