@@ -103,7 +103,7 @@ def movies():
 @app.route("/trailer", methods=['POST'])
 def trailer():
     trailer_id = request.form['trailer_id']
-    trailer_link = "https://www.youtube.com/embed/{}?controls=0&autoplay=1&playinline=1&playlist={}&loop=1".format(trailer_id, trailer_id)
+    trailer_link = "https://www.youtube.com/embed/{}?autoplay=1&playinline=1&playlist={}&loop=1".format(trailer_id, trailer_id)
     return render_template('trailer.html', trailer_id=trailer_id, trailer_link=trailer_link)
 
 @app.route('/like', methods=['POST'])

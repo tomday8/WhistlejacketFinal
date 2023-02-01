@@ -151,6 +151,7 @@ a.icon-left {
     height: 100vh;
     transform: translate(-50%, -50%);
     z-index: -1;
+    pointer-events: none;
   }
   
   @media (min-aspect-ratio: 16/9) {
@@ -282,4 +283,10 @@ a.icon-left {
 
 #titlepage {
   font-size: 50px;
+}
+
+.movies-link {
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
 }
