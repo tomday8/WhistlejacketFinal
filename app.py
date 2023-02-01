@@ -133,7 +133,6 @@ def dislike():
     movie_id = request.form["movie_id"]
     query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, -1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = -1;".format(user_id, movie_id)
     conn.execute(query)
-    print(query)
     return '', 204
 
 
