@@ -8,7 +8,9 @@
     {% extends 'base.html' %}
     <title>The randomizer</title>
 </head>
+
 {% block main %}
+
 <body>
     <main>
         {% if current_user.is_anonymous %}
@@ -20,5 +22,7 @@
     </main>
     <script src="../static/js/script.js"></script>
 </body>
+
 {% endblock %}
+
 </html>

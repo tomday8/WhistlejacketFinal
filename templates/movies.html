@@ -14,75 +14,64 @@
       <a href="/"><i class="fa-solid fa-house-chimney fa-2x"></i></a>
 
       {% if current_user.is_anonymous %}
-          <a href="{{ url_for('login') }}"><i class="fa-solid fa-right-to-bracket fa-2x"></i></a>
-      {% else %}
-      <a href="{{ url_for('watchlist') }}"><i class="fa-solid fa-list fa-2x"></i></a>
-      <a href="{{ url_for('my_account') }}"><i class="fa-solid fa-gear fa-2x"></i></a>
-      <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket fa-2x"></i></a>
-      {% endif %}
+
+        <a href="{{ url_for('login') }}"><i class="fa-solid fa-right-to-bracket fa-2x"></i></a>
       
+      {% else %}
+
+        <a href="{{ url_for('watchlist') }}"><i class="fa-solid fa-list fa-2x"></i></a>
+        <a href="{{ url_for('my_account') }}"><i class="fa-solid fa-gear fa-2x"></i></a>
+        <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket fa-2x"></i></a>
+      
+      {% endif %}
   </li>
 </ul>
 
 <body>
-      <iframe src={{background_link}}></iframe> 
+  <iframe src={{background_link}}></iframe> 
 
-      <div class="content">
-        <div>
-        <h1 class="heading">{{movie_title}}</h1>
-        <p>Year: {{movie_year}}</p>
-        <p>IMDB Rating: {{movie_rating}}</p>
-        </div>
-      </div>
+  <div class="content">
+    <div>
+    <h1 class="heading">{{movie_title}}</h1>
+    <p>Year: {{movie_year}}</p>
+    <p>IMDB Rating: {{movie_rating}}</p>
+    </div>
+  </div>
 
-      <div class="allbuttons">
-        <a class="moviebuttons" href="/movies"><i class="fa-solid fa-rotate-left fa-2x"></i></a>
-     
-        <form id="trailer-form" method="POST" action="/trailer">
-          <input type="hidden" name="trailer_id" value="{{movie_trailer}}">
-          <input type="submit" style="display: none;">
-          <a class="moviebuttons" href="#" onclick="document.getElementById('trailer-form').submit()"><i class="fa-solid fa-video fa-2x"></i></a>
-        </form>
-        
-        {% if current_user.is_authenticated %}
-        <form id="like-form" action="{{url_for('like')}}", method="post">
-          <input type="hidden" name="user_id" value="{{current_user.id}}">
-          <input type="hidden" name="movie_id" value="{{movie_id}}">
-          <input type="submit" style="display: none;">
-          <a class="moviebuttons" href="#" onclick="document.getElementById('like-form').submit()"><i class="fa-solid fa-thumbs-up fa-2x"></i></a>
-        </form>
-        
-        <form id="dislike-form" action="{{url_for('dislike')}}", method="post">
-          <input type="hidden" name="user_id" value="{{current_user.id}}">
-          <input type="hidden" name="movie_id" value="{{movie_id}}">
-          <input type="submit" style="display: none;">
-          <a class="moviebuttons" href="#" onclick="document.getElementById('dislike-form').submit()"><i class="fa-solid fa-thumbs-down fa-2x"></i></a>
-        </form>
-        
-        <form id="save-form" action="{{url_for('save')}}", method="post">
-          <input type="hidden" name="user_id" value="{{current_user.id}}">
-          <input type="hidden" name="movie_id" value="{{movie_id}}">
-          <input type="submit" style="display: none;">
-          <a class="moviebuttons" href="#" onclick="document.getElementById('save-form').submit()"><i class="fa-solid fa-plus fa-2x"></i></a>
-        </form>
-        {% endif %} 
-        
-        <!-- <form id="remove-form" action="{{url_for('remove')}}", method="post">
-          <input type="hidden" name="user_id" value="{{current_user.id}}">
-          <input type="hidden" name="movie_id" value="{{movie_id}}">
-          <input type="submit" style="display: none;">
-          <a class="moviebuttons" href="#" onclick="document.getElementById('remove-form').submit()"><i class="fa-solid fa-minus fa-2x"></i></a>
-        </form> -->
-        
-        <!-- <form id="neutral-form" action="{{url_for('neutral')}}", method="post">
-          <input type="hidden" name="user_id" value="{{current_user.id}}">
-          <input type="hidden" name="movie_id" value="{{movie_id}}">
-          <input type="submit" style="display: none;">
-          <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form').submit()">Placeholder-neutral</a>
-        </form> -->
-      </div>
-        
+  <div class="allbuttons">
+    <a class="moviebuttons" href="/movies"><i class="fa-solid fa-rotate-left fa-2x"></i></a>
+  
+    <form id="trailer-form" method="POST" action="/trailer">
+      <input type="hidden" name="trailer_id" value="{{movie_trailer}}">
+      <input type="submit" style="display: none;">
+      <a class="moviebuttons" href="#" onclick="document.getElementById('trailer-form').submit()"><i class="fa-solid fa-video fa-2x"></i></a>
+    </form>
+    
+    {% if current_user.is_authenticated %}
+
+      <form id="like-form" action="{{url_for('like')}}", method="post">
+        <input type="hidden" name="user_id" value="{{current_user.id}}">
+        <input type="hidden" name="movie_id" value="{{movie_id}}">
+        <input type="submit" style="display: none;">
+        <a class="moviebuttons" href="#" onclick="document.getElementById('like-form').submit()"><i class="fa-solid fa-thumbs-up fa-2x"></i></a>
+      </form>
+      
+      <form id="dislike-form" action="{{url_for('dislike')}}", method="post">
+        <input type="hidden" name="user_id" value="{{current_user.id}}">
+        <input type="hidden" name="movie_id" value="{{movie_id}}">
+        <input type="submit" style="display: none;">
+        <a class="moviebuttons" href="#" onclick="document.getElementById('dislike-form').submit()"><i class="fa-solid fa-thumbs-down fa-2x"></i></a>
+      </form>
+      
+      <form id="save-form" action="{{url_for('save')}}", method="post">
+        <input type="hidden" name="user_id" value="{{current_user.id}}">
+        <input type="hidden" name="movie_id" value="{{movie_id}}">
+        <input type="submit" style="display: none;">
+        <a class="moviebuttons" href="#" onclick="document.getElementById('save-form').submit()"><i class="fa-solid fa-plus fa-2x"></i></a>
+      </form>
+
+    {% endif %} 
+  </div>    
 </body>
 
 </html>
-

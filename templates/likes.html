@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,54 +9,63 @@
     {% extends 'base.html' %}
     <title>Account</title>
 </head>
+
 {% block main %}
 
 <body>
-   
-    <main>
+  <main>
     <div id="accountpage">
-        
       <div class="liked-movies">
         <h1 id="accounth1">My likes:</h1>
+          {% if liked_movies %}
+          {% for movie in liked_movies %}
 
-        {% if liked_movies %}
-        {% for movie in liked_movies %}
-        <div class="likedmovie">
-          <p>{{ movie.title }}</p>
-          <form id="neutral-form-{{ movie.id }}" method="post" action="{{ url_for('neutral') }}">
-            <input type="hidden" name="user_id" value="{{current_user.id}}">
-            <input type="hidden" name="movie_id" value="{{movie.id}}">
-            <input type="submit" style="display: none;">
-            <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form-{{ movie.id }}').submit()"><i class="fa-solid fa-x"></i></a>
-          </form>
-        </div>
-        {% endfor %}
-    
-        {% else %}
-          <p>No liked movies to display.</p>
-        {% endif %}
+            <div class="likedmovie">
+              <p>{{ movie.title }}</p>
+              
+              <form id="neutral-form-{{ movie.id }}" method="post" action="{{ url_for('neutral') }}">
+                <input type="hidden" name="user_id" value="{{current_user.id}}">
+                <input type="hidden" name="movie_id" value="{{movie.id}}">
+                <input type="submit" style="display: none;">
+                <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form-{{ movie.id }}').submit()"><i class="fa-solid fa-x"></i></a>
+              </form>
+            </div>
+
+          {% endfor %}
+          {% else %}
+
+            <p>No liked movies to display.</p>
+
+          {% endif %}
       </div>
 
-    <div class="disliked-movies">
-      <h1 id="accounth1">My dislikes:</h1>
-    {% if disliked_movies %}
-    {% for movie in disliked_movies %}
-    <div class="likedmovie">
-      <p>{{ movie.title }}</p>
-      <form id="neutral-form-{{ movie.id }}" method="post" action="{{ url_for('neutral') }}">
-        <input type="hidden" name="user_id" value="{{current_user.id}}">
-        <input type="hidden" name="movie_id" value="{{movie.id}}">
-        <input type="submit" style="display: none;">
-        <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form-{{ movie.id }}').submit()"><i class="fa-solid fa-x"></i></a>
-      </form>
+      <div class="disliked-movies">
+        <h1 id="accounth1">My dislikes:</h1>
+          {% if disliked_movies %}
+          {% for movie in disliked_movies %}
+
+            <div class="likedmovie">
+              <p>{{ movie.title }}</p>
+
+              <form id="neutral-form-{{ movie.id }}" method="post" action="{{ url_for('neutral') }}">
+                <input type="hidden" name="user_id" value="{{current_user.id}}">
+                <input type="hidden" name="movie_id" value="{{movie.id}}">
+                <input type="submit" style="display: none;">
+                <a class="moviebuttons" href="#" onclick="document.getElementById('neutral-form-{{ movie.id }}').submit()"><i class="fa-solid fa-x"></i></a>
+              </form>
+            </div>
+
+          {% endfor %}
+          {% else %}
+          
+            <p>No disliked movies to display.</p>
+
+          {% endif %}
+      </div>
     </div>
-    {% endfor %}
-    {% else %}
-      <p>No disliked movies to display.</p>
-    {% endif %}
-    </div>
-    </div>
-</main>
+  </main>
 </body>
+
 {% endblock %}
+
 </html>

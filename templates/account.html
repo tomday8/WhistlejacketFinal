@@ -8,21 +8,21 @@
     {% extends 'base.html' %}
     <title>Account</title>
 </head>
+
 {% block main %}
 
 <body>
-   
-    <main>
+  <main>
     <div id="accountpage">
       <div id="updateaccountdiv">
-      <h1>ACCOUNT</h1>
-        <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post", onsubmit="name_confirmation()">
+        <h1>ACCOUNT</h1>
+          <form id="updateAccountForm" action="{{url_for('updateName')}}", method="post", onsubmit="name_confirmation()">
           <input type="text" name="firstname" placeholder="First name">
           <input type="hidden" name="user_id" value="{{current_user.id}}">
           <input type="submit" value="Update">
           <script>
             function name_confirmation() {
-            alert("Name updated");
+              alert("Name updated");
             }
           </script>
         </form>
@@ -33,7 +33,7 @@
           <input type="submit" value="Update">
           <script>
             function email_confirmation() {
-            alert("Email updated");
+              alert("Email updated");
             }
           </script>
         </form>
@@ -44,7 +44,7 @@
           <input type="submit" value="Update">
           <script>
             function pword_confirmation() {
-            alert("Password updated");
+              alert("Password updated");
             }
           </script>
         </form>
@@ -63,10 +63,13 @@
             }
           </script>
         </form>
+
         <a href="/likes" id="moviebuttons"><i class="fa-regular fa-heart fa-2x"></i><br><br>Manage Likes</a>
+
       </div>
     </div>
-</main>
+  </main>
 </body>
+
 {% endblock %}
 </html>
