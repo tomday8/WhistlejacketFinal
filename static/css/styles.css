@@ -197,12 +197,9 @@ a.icon-left {
   }
 
   .liked-movies {
-    /* margin: auto; */
-    /* margin-left: auto;
-    margin-right: auto; */
     text-align: left;
     vertical-align: top;
-    margin-left: 12rem;
+    margin-left: 16%;
     width: 50%;
   }
 
@@ -212,12 +209,9 @@ a.icon-left {
   }
 
   .disliked-movies {
-    /* margin: auto; */
-    /* margin-left: auto;
-    margin-right: auto; */
     text-align: left;
     vertical-align: top;
-    margin-right: 2rem;
+    margin-right: 1%;
     width: 50%;
   }
 
