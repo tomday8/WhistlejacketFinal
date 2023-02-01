@@ -106,13 +106,25 @@ def trailer():
     trailer_link = "https://www.youtube.com/embed/{}?autoplay=1&playinline=1&playlist={}&loop=1".format(trailer_id, trailer_id)
     return render_template('trailer.html', trailer_id=trailer_id, trailer_link=trailer_link)
 
+
 @app.route('/like', methods=['POST'])
 def like():
     user_id = request.form["user_id"]
     movie_id = request.form["movie_id"]
-    query="INSERT INTO user_movies (user_id, movie_id, like_dislike) VALUES ({}, {}, 1) ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 1;".format(user_id, movie_id)
+    query = """
+        INSERT INTO user_movies (user_id, movie_id, like_dislike) 
+        VALUES ({}, {}, 1)
+        ON CONFLICT (user_id, movie_id)  DO UPDATE SET like_dislike = 1;
+        INSERT INTO user_scores (user_id, genre, score)
+        SELECT {}, movies.genre, 1
+        FROM movies
+        WHERE movies.id = {}
+        ON CONFLICT (user_id, genre) DO UPDATE SET score = user_scores.score + 1;
+     """.format(user_id, movie_id, user_id, movie_id)
     conn.execute(query)
     return '', 204
+
+
 
 
 @app.route('/dislike', methods=['POST'])
@@ -202,16 +214,37 @@ def likes():
         return redirect(url_for('home'))
 
 
-
 def return_movie(user_id=None):
     if current_user.is_authenticated:
-        query = "SELECT * FROM movies WHERE id NOT IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)".format(user_id)
+        query = """
+        SELECT movies.*, user_scores.score
+        FROM movies
+        LEFT JOIN user_scores
+        ON user_scores.genre = movies.genre
+        AND user_scores.user_id = {}
+        WHERE movies.id NOT IN (SELECT movie_id FROM user_movies WHERE user_id = {} AND like_dislike = -1)
+        """.format(user_id, user_id)
         result = conn.execute(query)
         df = pd.DataFrame(result.fetchall())
         if len(df.columns) == 0:
-            return []
+            query = "SELECT * FROM movies"
+            result = conn.execute(query)
+            df = pd.DataFrame(result.fetchall())
+            df.columns = result.keys()
+            movie = random.choice(df.to_dict("records"))
+            return movie
         df.columns = result.keys()
-        movie = random.choice(df.to_dict("records"))
+        total_score = df["score"].sum()
+        if total_score == 0:
+            query = "SELECT * FROM movies"
+            result = conn.execute(query)
+            df = pd.DataFrame(result.fetchall())
+            df.columns = result.keys()
+            movie = random.choice(df.to_dict("records"))
+            return movie
+        df['likelihood'] = df['score'] / total_score
+        df = df.sample(weights=df['likelihood'], n=1)
+        movie = df.to_dict(orient='records')[0]
         return movie
     else:
         query = "SELECT * FROM movies"
