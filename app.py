@@ -5,7 +5,6 @@ from flask_login import LoginManager, UserMixin, login_user, current_user, logou
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm
-from models import User
 import sqlalchemy as sal
 import pandas as pd
 import random
@@ -30,6 +29,7 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(user_id)
 
+from models import User
 @app.route('/register', methods = ['POST','GET'])
 def register():
     form = RegistrationForm()
@@ -43,6 +43,23 @@ def register():
             user.set_password(form.password1.data)
             db.session.add(user)
             db.session.commit()
+            query = """
+            INSERT INTO user_scores
+            VALUES ({}, 'Action', 1);
+
+            INSERT INTO user_scores
+            VALUES ({}, 'Sci Fi', 1);
+
+            INSERT INTO user_scores
+            VALUES ({}, 'Drama', 1);
+
+            INSERT INTO user_scores
+            VALUES ({}, 'Animation', 1);
+
+            INSERT INTO user_scores
+            VALUES ({}, 'Musical', 1);
+            """.format(user.id, user.id, user.id, user.id, user.id)
+            conn.execute(query)
             return redirect(url_for('login'))
     return render_template('registration.html', form=form)
 
