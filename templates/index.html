@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,19 +9,28 @@
     {% extends 'base.html' %}
     <title>The randomizer</title>
 </head>
+
 {% block main %}
+
 <body>
     <main>
         <div class="maintitle">
+
             {% if current_user.is_anonymous %}
-            <h1 data-value="WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">WELCOME TO THE MOVIE RANDOMIZER</h1>
+                <h1 data-value="WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">WELCOME TO THE MOVIE RANDOMIZER</h1>
+
             {% else %}
-            <h1 data-value="{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER</h1>
+                <h1 data-value="{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER</h1>
+
             {% endif %}  
         </div>
+        
         <a id="rattle" href="/movies"><i class="fa-solid fa-clapperboard fa-4x"></i></a>
     </main>
+
     <script src="../static/js/script.js"></script>
 </body>
+
 {% endblock %}
+
 </html>

@@ -20,7 +20,6 @@
 
           {% if liked_movies %}
           {% for movie in liked_movies %}
-
             <div class="likedmovie">
               <form id="neutral-form-{{ movie.id }}" method="post" action="{{ url_for('neutral') }}">
                 <input type="hidden" name="user_id" value="{{current_user.id}}">
@@ -34,7 +33,6 @@
           
           {% endfor %}
           {% else %}
-
             <p>No liked movies to display.</p>
 
           {% endif %}
@@ -45,7 +43,6 @@
 
           {% if disliked_movies %}
           {% for movie in disliked_movies %}
-
             <div class="likedmovie">
               <form id="neutral-form-{{ movie.id }}" method="post" action="{{ url_for('neutral') }}">
                 <input type="hidden" name="user_id" value="{{current_user.id}}">
@@ -59,7 +56,6 @@
 
           {% endfor %}
           {% else %}
-
             <p>No disliked movies to display.</p>\
 
           {% endif %}

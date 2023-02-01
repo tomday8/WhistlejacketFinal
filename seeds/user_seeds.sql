@@ -8,5 +8,4 @@ CREATE TABLE "user" (
     joined_at date
 );
 
-
 -- To seed db: psql -h 127.0.0.1 whistlejacket-randomizer < seeds/user_seeds.sql;
