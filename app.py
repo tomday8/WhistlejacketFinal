@@ -88,7 +88,6 @@ def movies():
             movie = return_movie(current_user.id)
         else:
             movie = return_movie()
-
         movie_id = movie['id']
         movie_title = movie['title']
         movie_year = movie['year']
