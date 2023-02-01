@@ -9,7 +9,7 @@ html{
 main{
     height: 100%;
     position: relative;
-    top: 10rem;
+    top: 4rem;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -100,6 +100,11 @@ input[type=submit] {
 a.icon-left {
     position: absolute;
     left: 0;
+}
+
+.maintitle {
+  position: relative;
+  top: 7rem;
 }
 
 .content {
@@ -193,6 +198,7 @@ a.icon-left {
   .liked-movies {
     margin: auto;
     text-align: left;
+    vertical-align: top;
   }
 
   .saved-movies {
@@ -203,6 +209,7 @@ a.icon-left {
   .disliked-movies {
     margin: auto;
     text-align: left;
+    vertical-align: top;
   }
 
 
@@ -231,6 +238,7 @@ a.icon-left {
   .likedmovie{
     display: flex;
     align-items: center;
+    vertical-align: top;
   }
 
 @keyframes shake {

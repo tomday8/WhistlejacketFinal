@@ -11,12 +11,14 @@
 {% block main %}
 <body>
     <main>
-        {% if current_user.is_anonymous %}
-        <h1 data-value="WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">WELCOME TO THE MOVIE RANDOMIZER</h1>
-        {% else %}
-        <h1 data-value="{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER</h1>
-        {% endif %}  
-        <a id="rattle" href="/movies"><i class="fa-solid fa-clapperboard fa-4x"></i></a>
+        <div class="maintitle">
+            {% if current_user.is_anonymous %}
+            <h1 data-value="WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">WELCOME TO THE MOVIE RANDOMIZER</h1>
+            {% else %}
+            <h1 data-value="{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER" id="titlepage">{{current_user.firstname.upper()}}, WELCOME TO THE MOVIE RANDOMIZER</h1>
+            {% endif %}  
+            <a id="rattle" href="/movies"><i class="fa-solid fa-clapperboard fa-4x"></i></a>
+        </div>
     </main>
     <script src="../static/js/script.js"></script>
 </body>
