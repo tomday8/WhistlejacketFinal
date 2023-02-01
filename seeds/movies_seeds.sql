@@ -7,7 +7,6 @@ CREATE TABLE movies (
     rating decimal(2,1),
     trailer text,
     genre text
-    -- ON DELETE CASCADE
 );
 
 INSERT INTO movies ("title", "year", "rating", "trailer", "genre") VALUES
