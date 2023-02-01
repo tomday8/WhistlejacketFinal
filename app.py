@@ -44,21 +44,21 @@ def register():
             db.session.add(user)
             db.session.commit()
             query = """
-            INSERT INTO user_scores
-            VALUES ({}, 'Action', 1);
+                INSERT INTO user_scores
+                VALUES ({}, 'Action', 1);
 
-            INSERT INTO user_scores
-            VALUES ({}, 'Sci Fi', 1);
+                INSERT INTO user_scores
+                VALUES ({}, 'Sci Fi', 1);
 
-            INSERT INTO user_scores
-            VALUES ({}, 'Drama', 1);
+                INSERT INTO user_scores
+                VALUES ({}, 'Drama', 1);
 
-            INSERT INTO user_scores
-            VALUES ({}, 'Animation', 1);
+                INSERT INTO user_scores
+                VALUES ({}, 'Animation', 1);
 
-            INSERT INTO user_scores
-            VALUES ({}, 'Musical', 1);
-            """.format(user.id, user.id, user.id, user.id, user.id)
+                INSERT INTO user_scores
+                VALUES ({}, 'Musical', 1);
+                """.format(user.id, user.id, user.id, user.id, user.id)
             conn.execute(query)
             return redirect(url_for('login'))
     return render_template('registration.html', form=form)
@@ -112,14 +112,11 @@ def movies():
         trailer_link = "https://www.youtube.com/embed/{}?autoplay=1&playinline=1&playlist={}&loop=1".format(movie_trailer, movie_trailer)
         return render_template('movies.html', movie_title=movie_title, movie_year=movie_year, movie_rating=movie_rating, movie_trailer=movie_trailer, background_link=background_link, trailer_link=trailer_link, movie_id=movie_id)
 
-
-
 @app.route("/trailer", methods=['POST'])
 def trailer():
     trailer_id = request.form['trailer_id']
     trailer_link = "https://www.youtube.com/embed/{}?autoplay=1&playinline=1&playlist={}&loop=1".format(trailer_id, trailer_id)
     return render_template('trailer.html', trailer_id=trailer_id, trailer_link=trailer_link)
-
 
 @app.route('/like', methods=['POST'])
 def like():
@@ -138,9 +135,6 @@ def like():
     conn.execute(query)
     return '', 204
 
-
-
-
 @app.route('/dislike', methods=['POST'])
 def dislike():
     user_id = request.form["user_id"]
@@ -152,7 +146,6 @@ def dislike():
         DO UPDATE SET like_dislike = -1;""".format(user_id, movie_id)
     conn.execute(query)
     return '', 204
-
 
 @app.route('/neutral', methods=['POST'])
 def neutral():
@@ -166,7 +159,6 @@ def neutral():
     conn.execute(query)
     return redirect(url_for('likes'))
 
-
 @app.route('/remove', methods=['POST'])
 def remove():
     user_id = request.form["user_id"]
@@ -178,7 +170,6 @@ def remove():
         AND movie_id = {}""".format(user_id, movie_id)
     conn.execute(query)
     return redirect(url_for('watchlist'))
-
 
 @app.route('/save', methods=['POST'])
 def save():
@@ -254,7 +245,6 @@ def likes():
     else:
         return redirect(url_for('home'))
 
-
 def return_movie(user_id=None):
     if current_user.is_authenticated:
         query = """
@@ -301,7 +291,6 @@ def return_movie(user_id=None):
         df.columns = result.keys()
         movie = random.choice(df.to_dict("records"))
         return movie
-
 
 def return_movie_trailer(id):
     query = """
