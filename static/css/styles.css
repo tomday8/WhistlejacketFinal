@@ -147,6 +147,7 @@ a.icon-left {
     height: 100vh;
     transform: translate(-50%, -50%);
     z-index: -1;
+    pointer-events: none;
   }
   
   @media (min-aspect-ratio: 16/9) {
