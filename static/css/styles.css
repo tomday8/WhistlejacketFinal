@@ -9,7 +9,7 @@ html{
 main{
     height: 100%;
     position: relative;
-    top: 10rem;
+    top: 4rem;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -102,10 +102,14 @@ a.icon-left {
     left: 0;
 }
 
+.maintitle {
+  position: relative;
+  top: 7rem;
+}
+
 .content {
     position: fixed;
     bottom: 0;
-    /* background: rgba(0, 0, 0, 0.5); */
     background: linear-gradient(to top,  rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
     color: rgb(213, 211, 209);
     width: 100%;
@@ -147,6 +151,7 @@ a.icon-left {
     height: 100vh;
     transform: translate(-50%, -50%);
     z-index: -1;
+    pointer-events: none;
   }
   
   @media (min-aspect-ratio: 16/9) {
@@ -194,6 +199,7 @@ a.icon-left {
   .liked-movies {
     margin: auto;
     text-align: left;
+    vertical-align: top;
   }
 
   .saved-movies {
@@ -204,6 +210,7 @@ a.icon-left {
   .disliked-movies {
     margin: auto;
     text-align: left;
+    vertical-align: top;
   }
 
 
@@ -232,6 +239,7 @@ a.icon-left {
   .likedmovie{
     display: flex;
     align-items: center;
+    vertical-align: top;
   }
 
 @keyframes shake {
@@ -282,7 +290,3 @@ a.icon-left {
   margin: 0;
   text-decoration: underline;
 }
-
-/* .movies-link:hover{
-  background-color: #808080;   
-} */

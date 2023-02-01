@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,31 +9,39 @@
     {% extends 'base.html' %}
     <title>Account</title>
 </head>
+
 {% block main %}
 
 <body>
-   
-    <main>
+  <main>
     <div class="saved-movies">
       <h1 id="accounth1">Your watch list:</h1>
+
         {% if saved_movies %}
         {% for movie in saved_movies %}
-        <div class="likedmovie">
-          <p>{{ movie.title }}</p>
-          <form id="remove-form-{{ movie.id }}" method="post" action="{{ url_for('remove') }}">
-            <input type="hidden" name="user_id" value="{{current_user.id}}">
-            <input type="hidden" name="movie_id" value="{{movie.id}}">
-            <input type="submit" style="display: none;">
-            <a class="moviebuttons" href="#" onclick="document.getElementById('remove-form-{{ movie.id }}').submit()"><i class="fa-solid fa-x"></i></a>
-          </form>
-        </div>
+
+          <div class="likedmovie">
+
+            <form id="remove-form-{{ movie.id }}" method="post" action="{{ url_for('remove') }}">
+              <input type="hidden" name="user_id" value="{{current_user.id}}">
+              <input type="hidden" name="movie_id" value="{{movie.id}}">
+              <input type="submit" style="display: none;">
+              <a class="moviebuttons" href="#" onclick="document.getElementById('remove-form-{{ movie.id }}').submit()"><i class="fa-solid fa-xmark"></i></a>
+            </form>
+
+            <p>{{ movie.title }}</p>
+            
+          </div>
+
         {% endfor %}
         {% else %}
           <p>You have no saved movies.</p>
           <p>Use <a class="movies-link" href ="/movies">The Movie Randmoizer</a> to start saving some movies!</p></p> 
         {% endif %}
     </div>
-</main>
+  </main>
 </body>
+
 {% endblock %}
+
 </html>
