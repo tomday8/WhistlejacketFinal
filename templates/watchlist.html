@@ -25,7 +25,7 @@
               <input type="hidden" name="user_id" value="{{current_user.id}}">
               <input type="hidden" name="movie_id" value="{{movie.id}}">
               <input type="submit" style="display: none;">
-              <a class="moviebuttons" href="#" onclick="document.getElementById('remove-form-{{ movie.id }}').submit()"><i class="fa-solid fa-xmark"></i></a>
+              <a class="moviebuttons" href="#" onclick="document.getElementById('remove-form-{{ movie.id }}').submit()"><i class="fa-solid fa-check"></i></a>
             </form>
 
             <p>{{ movie.title }}</p>

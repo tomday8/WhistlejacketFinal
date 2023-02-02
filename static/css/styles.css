@@ -152,6 +152,10 @@ iframe {
   z-index: -1;
   pointer-events: none;
 }
+
+.trailer {
+  pointer-events: all;
+}
   
 @media (min-aspect-ratio: 16/9) {
   .video-container iframe {
